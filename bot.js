@@ -13,7 +13,7 @@ client.on('ready', () => {
 })
 
 client.on('messageCreate', (message) => {
-    if (message.content === '기모띠') {
+    if (message.content === '기모띠s') {
         message.reply({
             content: '앙',
         })
