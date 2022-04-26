@@ -1,0 +1,14 @@
+{
+  "name": "allstarbot-madeby-dambae",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.ts"
+  },
+  "author": "dambae",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  }
+}
