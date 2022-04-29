@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
   "author": "dambae",
   "dependencies": {
     "@discordjs/rest": "^0.4.1",
