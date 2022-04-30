@@ -15,7 +15,6 @@ module.exports = {
   
       interaction.reply({
         content: `Name: ${user.username}, ID: ${user.id}, Avatar: ${user.displayAvatarURL({dynamic: true})}`,
-        ephemeral: true,
       });
     },
   };

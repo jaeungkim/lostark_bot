@@ -4,7 +4,11 @@ const { Client, Collection, Intents } = require('discord.js');
 module.exports = class extends Client {
     constructor(config) {
         super({
-            intents: [Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS],
+            intents: [
+                Intents.FLAGS.GUILDS,
+                Intents.FLAGS.GUILD_VOICE_STATES,
+                Intents.FLAGS.GUILD_MESSAGES,
+            ],
         });
 
         this.commands = new Collection();

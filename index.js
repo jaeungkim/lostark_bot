@@ -1,10 +1,12 @@
-
-const fs = require('fs');
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+require('dotenv').config()
+const fs = require('node:fs');
 const Discord = require('discord.js');
 const Client = require('./client/Client');
-require('dotenv').config()
-
 const client = new Client();
+const clientId = '968623822037205032';
+const guildId = '937590271930163200';
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -14,6 +16,21 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+const rest = new REST({ version: '9' }).setToken(process.env.BOT_TOKEN);
+(async () => {
+    try {
+        console.log('Started refreshing application (/) commands.');
+
+        await rest.put(
+            Routes.applicationGuildCommands(clientId, guildId),
+            { body: client.commands },
+        );
+
+        console.log('Successfully reloaded application (/) commands.');
+    } catch (error) {
+        console.error(error);
+    }
+})();
 console.log(client.commands);
 
 client.once('ready', async () => {
@@ -49,14 +66,16 @@ client.on('messageCreate', async message => {
     }
 });
 
-
 client.on('interactionCreate', async interaction => {
-    console.log('ok')
-    const command = client.commands.get(interaction.commandName.toLowerCase());
-
+    const command = client.commands.get(interaction.commandName);
     try {
-        if (interaction.commandName == 'party' || interaction.commandName == 'userinfo') {
+        if (interaction.commandName == 'helps' || interaction.commandName == 'userinfo' || interaction.commandName == 'party') {
             command.execute(interaction, client);
+            // client.on('clickButton', async (button) => {
+            //     if(button.id === "register"){
+            //         console.log('ok')
+            //     }
+            // })
         }
     } catch (error) {
         console.error(error);
