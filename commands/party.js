@@ -1,7 +1,7 @@
 const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
 module.exports = {
     name: 'party',
-    description: 'List all available commands.',
+    description: '파티 생성 가능합니다.',
     options: [
         {
             name: 'partyname',
@@ -77,7 +77,6 @@ module.exports = {
             description: '시간',
             required: true,
         },
-
     ],
     execute(interaction, client) {
         const partyName = interaction.options.get('partyname').value;
@@ -85,9 +84,10 @@ module.exports = {
         const userId = client.users.cache.get(interaction.user.id);
         const timeName = interaction.options.get('time').value;
         const channel = client.channels.cache.get(interaction.channelId)
+
         const partyMember = [interaction.user.id];
 
-        
+        //버튼을 그냥 추가한 상황
         const row = new MessageActionRow().addComponents(
             new MessageButton()
                 .setCustomId('register')
@@ -95,7 +95,7 @@ module.exports = {
                 .setStyle('PRIMARY'),
         )
 
-    
+        //이벤트를 추가하거나 예를들어 그 어떤 유저가 참가를 클릭하면 partyMember.push()
 
         const exampleEmbed = new MessageEmbed()
             .setColor('#0099ff')
@@ -118,6 +118,8 @@ module.exports = {
             .setTimestamp()
         // .setFooter({ text: 'Some footer text here', iconURL: 'https://imgur.com/a/IVfvxjz' });
 
+        //embed업데이트 exampleEmbed->exampleEmbed2 => send 
+
         channel.send({
             embeds: [exampleEmbed],
             components: [row],
@@ -125,5 +127,5 @@ module.exports = {
 
 
     },
-    
+
 }

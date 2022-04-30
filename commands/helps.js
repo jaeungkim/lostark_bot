@@ -14,7 +14,7 @@ module.exports = {
 
         return void interaction.reply({
             content: str,
-            ephemeral: true,
+            // ephemeral: true,
         });
     },
 }
