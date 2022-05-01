@@ -71,16 +71,11 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
     const command = client.commands.get(interaction.commandName);
     try {
-        if (interaction.commandName === 'helps' || interaction.commandName === 'userinfo' || interaction.commandName === 'party') {
-            await interaction.reply({ content: `파티 모집`, ephemeral: true })
-            await command.execute(interaction, client)
-
-            // client.on('clickButton', async (button) => {
-            //     if(button.id === "register"){
-            //         console.log('ok')
-            //     }
-            // })
-
+        if (interaction.commandName === 'party') {
+            interaction.reply({ content: `파티 모집`, ephemeral: true })
+            command.execute(interaction, client)
+        } else {
+            return;
         }
     } catch (error) {
         console.error(error);
