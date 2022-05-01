@@ -68,14 +68,13 @@ client.on('messageCreate', async message => {
 });
 
 client.on('interactionCreate', async interaction => {
-    if(!interaction.isCommand()) return;
+    if (!interaction.isCommand()) return;
     const command = client.commands.get(interaction.commandName);
     try {
         if (interaction.commandName === 'helps' || interaction.commandName === 'userinfo' || interaction.commandName === 'party') {
-            
-            await interaction.reply({content: `파티모집`})
-           await command.execute(interaction, client)
-            
+            await interaction.reply({ content: `파티모집`, ephemeral: true })
+            await command.execute(interaction, client)
+
             // client.on('clickButton', async (button) => {
             //     if(button.id === "register"){
             //         console.log('ok')
