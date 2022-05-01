@@ -98,12 +98,12 @@ module.exports = {
 
         const lineUp = {
             "958141031965130792": 8,
-            "958141141520359444": 4,
+            "958141141520359444": 2,
             "958141192938328064": 4,
         }
 
-        const limit = lineUp[partyName];
-        let partyMember = new Map();
+        let limit = lineUp[partyName];
+        const partyMember = new Map();
         const description = `
             파티장: <@${interaction.user.id}>
 
@@ -130,11 +130,6 @@ module.exports = {
             msg.react("970069703533940756"); //서포터 신청 이모지
             client.on('messageReactionAdd', async (reaction, user) => {
                 if (user.id === '968623822037205032') { return; }
-
-                if (partyMember.size >= limit) {
-                    reaction.users.remove(user.id);
-                    return;
-                }
                 if (reaction && reaction.message.id === msg.id) {
                     if (!partyMember.has(user.id)) {
                         partyMember.set(user.id, reaction.emoji.name);
@@ -142,6 +137,10 @@ module.exports = {
                     } else {
                         reaction.users.remove(user.id);
                     }
+                }
+                if (partyMember.size > limit) {
+                    reaction.users.remove(user.id);
+                    return;
                 }
             })
             client.on('messageReactionRemove', async (reaction, user) => {
