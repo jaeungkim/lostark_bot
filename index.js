@@ -73,7 +73,7 @@ client.on('interactionCreate', async interaction => {
     try {
         if (interaction.commandName === 'helps' || interaction.commandName === 'userinfo' || interaction.commandName === 'party') {
             
-            await interaction.reply({content: `<@&${interaction.options.get('partyname').value}>`})
+            await interaction.reply({content: `파티모집`})
            await command.execute(interaction, client)
             
             // client.on('clickButton', async (button) => {
