@@ -119,8 +119,6 @@ module.exports = {
         let limit = lineUp[partyName];
         const partyMember = new Map();
         const description = `
-            파티장: <@${interaction.user.id}>
-
             모집파티: <@&${partyName}> 
             파티 보이스쳇: <#${channelCode}> 
             시간: ${timeName}
@@ -138,8 +136,10 @@ module.exports = {
             })
             .setDescription(description)
             .setTimestamp();
-
-        channel.send({ embeds: [embed] }).then(msg => {
+        channel.send({ 
+            content: `<@&${partyName}> `,
+            embeds: [embed] 
+        }).then(msg => {
             msg.react("970069528258179103"); //딜러 신청 이모지
             msg.react("970069703533940756"); //서포터 신청 이모지
             client.on('messageReactionAdd', async (reaction, user) => {
