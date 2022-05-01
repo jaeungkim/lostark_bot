@@ -1,4 +1,15 @@
-const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
+
+function updateEmbed(msg, embed, description, partyMember, limit) {
+    let partyMemberString = "";
+    let i = 1;
+    for (let [userId, role] of partyMember) {
+        partyMemberString += `\n ${i++}. <@${userId}> - ${role}`;
+    }
+    embed.setDescription(description + partyMemberString).setTitle(`모집인원 : ${partyMember.size}/${limit}`);
+    msg.edit({ embeds: [embed] });
+}
+
 module.exports = {
     name: 'party',
     description: '파티 생성 가능합니다.',
@@ -80,52 +91,69 @@ module.exports = {
     ],
     execute(interaction, client) {
         const partyName = interaction.options.get('partyname').value;
-        const channelName = interaction.options.get('channel').value;
+        const channelCode = interaction.options.get('channel').value;
         const userId = client.users.cache.get(interaction.user.id);
         const timeName = interaction.options.get('time').value;
-        const channel = client.channels.cache.get(interaction.channelId)
+        const channel = client.channels.cache.get(interaction.channelId);
 
-        const partyMember = [interaction.user.id];
+        const lineUp = {
+            "958141031965130792": 8,
+            "958141141520359444": 4,
+            "958141192938328064": 4,
+        }
 
-        //버튼을 그냥 추가한 상황
-        const row = new MessageActionRow().addComponents(
-            new MessageButton()
-                .setCustomId('register')
-                .setLabel('참가')
-                .setStyle('PRIMARY'),
-        )
+        const limit = lineUp[partyName];
+        let partyMember = new Map();
+        const description = `
+            파티장: <@${interaction.user.id}>
 
-        //이벤트를 추가하거나 예를들어 그 어떤 유저가 참가를 클릭하면 partyMember.push()
+            모집파티: <@&${partyName}> 
+            파티 보이스쳇: <#${channelCode}> 
+            시간: ${timeName}
 
-        const exampleEmbed = new MessageEmbed()
+            <:DPS:970069528258179103> : 딜러 신청
+            <:SUPPORT:970069703533940756> : 서포터 신청
+
+            파티멤버:`;
+        let embed = new MessageEmbed()
             .setColor('#0099ff')
-            .setTitle(`모집인원 현황: ${partyMember.length}/4`)
+            .setTitle(`모집인원 : ${partyMember.size}/${limit}`)
             .setAuthor({
                 name: userId.username,
                 iconURL: userId.displayAvatarURL({ dynamic: true })
             })
-            .setDescription(`
-            
-            <@&${partyName}> 파티 <#${channelName}> 시간: ${timeName}
-            
-            파티 맴버: 
-            1. <@${interaction.user.id}>
-            2. 
-            3. 
-            4. 
-            `)
-            // .setImage('https://imgur.com/a/IVfvxjz')
-            .setTimestamp()
-        // .setFooter({ text: 'Some footer text here', iconURL: 'https://imgur.com/a/IVfvxjz' });
+            .setDescription(description)
+            .setTimestamp();
 
-        //embed업데이트 exampleEmbed->exampleEmbed2 => send 
+        channel.send({ embeds: [embed] }).then(msg => {
+            msg.react("970069528258179103"); //딜러 신청 이모지
+            msg.react("970069703533940756"); //서포터 신청 이모지
+            client.on('messageReactionAdd', async (reaction, user) => {
+                if (user.id === '968623822037205032') { return; }
 
-        channel.send({
-            embeds: [exampleEmbed],
-            components: [row],
+                if (partyMember.size >= limit) {
+                    reaction.users.remove(user.id);
+                    return;
+                }
+                if (reaction && reaction.message.id === msg.id) {
+                    if (!partyMember.has(user.id)) {
+                        partyMember.set(user.id, reaction.emoji.name);
+                        await updateEmbed(msg, embed, description, partyMember, limit);
+                    } else {
+                        reaction.users.remove(user.id);
+                    }
+                }
+            })
+            client.on('messageReactionRemove', async (reaction, user) => {
+                if (user.id === '968623822037205032') { return; }
+                if (reaction && reaction.message.id === msg.id) {
+                    if (reaction.emoji.name !== partyMember.get(user.id)) { return; }
+                    if (partyMember.delete(user.id)) {
+                        await updateEmbed(msg, embed, description, partyMember, limit);
+                    }
+                }
+            });
+
         })
-
-
     },
-
 }

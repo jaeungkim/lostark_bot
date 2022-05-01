@@ -76,6 +76,7 @@ client.on('interactionCreate', async interaction => {
             //         console.log('ok')
             //     }
             // })
+
         }
     } catch (error) {
         console.error(error);
@@ -83,6 +84,8 @@ client.on('interactionCreate', async interaction => {
             content: 'There was an error trying to execute that command!',
         });
     }
+
+
 });
 
 client.login(process.env.BOT_TOKEN);
