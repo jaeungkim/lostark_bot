@@ -25,12 +25,24 @@ module.exports = {
                     value: "958141031965130792",
                 },
                 {
+                    name: '벨가누스',
+                    value: "958141432357613608",
+                },
+                {
                     name: '오레하 노말 1,2종',
                     value: "958141141520359444",
                 },
                 {
                     name: '오레하 하드 1,2종',
                     value: "958141192938328064",
+                },
+                {
+                    name: '아르고스 1페',
+                    value: "958141240598212628",
+                },
+                {
+                    name: '아르고스 2페',
+                    value: "958141283078119454",
                 },
             ]
         },
@@ -95,11 +107,13 @@ module.exports = {
         const userId = client.users.cache.get(interaction.user.id);
         const timeName = interaction.options.get('time').value;
         const channel = client.channels.cache.get(interaction.channelId);
-
         const lineUp = {
             "958141031965130792": 8,
-            "958141141520359444": 2,
+            "958141432357613608": 4,
+            "958141141520359444": 4,
             "958141192938328064": 4,
+            "958141240598212628": 8,
+            "958141283078119454": 8,
         }
 
         let limit = lineUp[partyName];
