@@ -72,7 +72,7 @@ client.on('interactionCreate', async interaction => {
     const command = client.commands.get(interaction.commandName);
     try {
         if (interaction.commandName === 'helps' || interaction.commandName === 'userinfo' || interaction.commandName === 'party') {
-            await interaction.reply({ content: `파티모집`, ephemeral: true })
+            await interaction.reply({ content: `파티 모집`, ephemeral: true })
             await command.execute(interaction, client)
 
             // client.on('clickButton', async (button) => {
