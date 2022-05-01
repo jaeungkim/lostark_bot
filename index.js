@@ -4,6 +4,7 @@ require('dotenv').config()
 const fs = require('node:fs');
 const Discord = require('discord.js');
 const Client = require('./client/Client');
+const { waitForDebugger } = require('node:inspector');
 const client = new Client();
 const clientId = '968623822037205032';
 const guildId = '937590271930163200';
@@ -67,10 +68,14 @@ client.on('messageCreate', async message => {
 });
 
 client.on('interactionCreate', async interaction => {
+    if(!interaction.isCommand()) return;
     const command = client.commands.get(interaction.commandName);
     try {
-        if (interaction.commandName == 'helps' || interaction.commandName == 'userinfo' || interaction.commandName == 'party') {
-            command.execute(interaction, client);
+        if (interaction.commandName === 'helps' || interaction.commandName === 'userinfo' || interaction.commandName === 'party') {
+            
+            await interaction.reply({content: `<@&${interaction.options.get('partyname').value}>`})
+           await command.execute(interaction, client)
+            
             // client.on('clickButton', async (button) => {
             //     if(button.id === "register"){
             //         console.log('ok')

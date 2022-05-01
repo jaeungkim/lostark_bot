@@ -137,7 +137,7 @@ module.exports = {
             .setDescription(description)
             .setTimestamp();
         channel.send({ 
-            content: `<@&${partyName}> `,
+            // content: `<@&${partyName}> `,
             embeds: [embed] 
         }).then(msg => {
             msg.react("970069528258179103"); //딜러 신청 이모지
