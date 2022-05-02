@@ -4,10 +4,9 @@ require('dotenv').config()
 const fs = require('node:fs');
 const Discord = require('discord.js');
 const Client = require('./client/Client');
-const { waitForDebugger } = require('node:inspector');
 const client = new Client();
-const clientId = '968623822037205032';
-const guildId = '937590271930163200';
+const clientId = '968623822037205032'; //올스타
+const guildId = '937590271930163200'; //올스타
 client.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -32,7 +31,7 @@ const rest = new REST({ version: '9' }).setToken(process.env.BOT_TOKEN);
         console.error(error);
     }
 })();
-console.log(client.commands);
+
 
 client.once('ready', async () => {
     console.log('Ready!');
@@ -67,6 +66,8 @@ client.on('messageCreate', async message => {
     }
 });
 
+console.log(client.commands);
+
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
     const command = client.commands.get(interaction.commandName);
@@ -74,8 +75,6 @@ client.on('interactionCreate', async interaction => {
         if (interaction.commandName === 'party') {
             interaction.reply({ content: `파티 모집`, ephemeral: true })
             command.execute(interaction, client)
-        } else {
-            return;
         }
     } catch (error) {
         console.error(error);

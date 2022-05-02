@@ -1,7 +1,10 @@
 const { MessageEmbed } = require('discord.js');
 
 function updateEmbed(msg, embed, description, partyMember, limit) {
-    let partyMemberString = "";
+    let partyMemberString = ""
+    if (partyMember.size > 0) {
+        partyMemberString += "\n\n파티멤버:";
+    }
     let i = 1;
     for (let [userId, role] of partyMember) {
         partyMemberString += `\n ${i++}. <@${userId}> - ${role}`;
@@ -23,6 +26,14 @@ module.exports = {
                 {
                     name: '낙원',
                     value: "958141031965130792",
+                },
+                {
+                    name: '6종카드작',
+                    value: "963934056666525766",
+                },
+                {
+                    name: '1302 중갑나크',
+                    value: "970489497684946964",
                 },
                 {
                     name: '1340 이그렉시온',
@@ -117,6 +128,8 @@ module.exports = {
         const channel = client.channels.cache.get(interaction.channelId);
         const lineUp = {
             "958141031965130792": 8, //낙원
+            "963934056666525766": 4, //6종
+            "970489497684946964": 4, //중갑나크
             "970452969801797683": 4, //이그렉시온
             "958141396009746502": 4, //요호
             "958141432357613608": 4, //벨가누스
@@ -125,29 +138,30 @@ module.exports = {
             "958141240598212628": 8, //아르고스1페
             "958141283078119454": 8, //아르고스2페
         }
-
+        const abyssThumbnailObject = {
+            "958141031965130792": "https://cdn.discordapp.com/attachments/955563030362591352/970494471835897856/2022-05-01_181828.png", //낙원
+            "963934056666525766": "https://cdn.discordapp.com/attachments/955563030362591352/970494846492110848/unknown.png",//6종카드작
+            "970489497684946964": "https://cdn.discordapp.com/attachments/955563030362591352/970492698303807538/unknown.png", //중나
+            "970452969801797683": "https://cdn.discordapp.com/attachments/955563030362591352/970493666571460658/125.png", //이그렉시온
+            "958141396009746502": "https://cdn.discordapp.com/attachments/955563030362591352/970491053566210118/unknown.png", //요호
+            "958141432357613608": "https://cdn.discordapp.com/attachments/955563030362591352/970493135421595648/unknown.png", //벨가누스
+            "958141141520359444": "https://cdn.discordapp.com/attachments/955563030362591352/970491483016798218/unknown.png", //오레하노말
+            "958141192938328064": "https://cdn.discordapp.com/attachments/955563030362591352/970491483016798218/unknown.png", //오레하하드
+            "958141240598212628": "https://cdn.discordapp.com/attachments/955563030362591352/970494725654208512/125.jpg", //아르고스1페
+            "958141283078119454": "https://cdn.discordapp.com/attachments/955563030362591352/970494725654208512/125.jpg", //아르고스2페
+        }
         let limit = lineUp[partyName];
+        let abyssThumbnailPics = abyssThumbnailObject[partyName];
         const partyMember = new Map();
-        const description = `
-            모집파티: <@&${partyName}> 
-            파티 보이스쳇: <#${channelCode}> 
-            시간: ${timeName}
-
-            <:DPS:970069528258179103> : 딜러 신청
-            <:SUPPORT:970069703533940756> : 서포터 신청
-
-            파티멤버:`;
+        const description = `\n모집파티: <@&${partyName}>\n음성채널: <#${channelCode}>\n작성자: ${userId}\n시간: ${timeName}\n\n<:DPS:970069528258179103> 딜러 신청\n<:SUPPORT:970069703533940756> 서포터 신청`;
         let embed = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle(`모집인원 : ${partyMember.size}/${limit}`)
-            .setAuthor({
-                name: userId.username,
-                iconURL: userId.displayAvatarURL({ dynamic: true })
-            })
             .setDescription(description)
-            .setTimestamp();
+            .setThumbnail(abyssThumbnailPics)
+            .setTimestamp()
         channel.send({
-            content: `<@&${partyName}> `,
+            content: `<@&${partyName}> 파티 모집 합니다`,
             embeds: [embed]
         }).then(msg => {
             msg.react("970069528258179103"); //딜러 신청 이모지
