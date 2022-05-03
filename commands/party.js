@@ -139,16 +139,16 @@ module.exports = {
             "958141283078119454": 8, //아르고스2페
         }
         const abyssThumbnailObject = {
-            "958141031965130792": "https://cdn.discordapp.com/attachments/955563030362591352/970494471835897856/2022-05-01_181828.png", //낙원
-            "963934056666525766": "https://cdn.discordapp.com/attachments/955563030362591352/970494846492110848/unknown.png",//6종카드작
-            "970489497684946964": "https://cdn.discordapp.com/attachments/955563030362591352/970492698303807538/unknown.png", //중나
-            "970452969801797683": "https://cdn.discordapp.com/attachments/955563030362591352/970493666571460658/125.png", //이그렉시온
-            "958141396009746502": "https://cdn.discordapp.com/attachments/955563030362591352/970491053566210118/unknown.png", //요호
-            "958141432357613608": "https://cdn.discordapp.com/attachments/955563030362591352/970493135421595648/unknown.png", //벨가누스
-            "958141141520359444": "https://cdn.discordapp.com/attachments/955563030362591352/970491483016798218/unknown.png", //오레하노말
-            "958141192938328064": "https://cdn.discordapp.com/attachments/955563030362591352/970491483016798218/unknown.png", //오레하하드
-            "958141240598212628": "https://cdn.discordapp.com/attachments/955563030362591352/970494725654208512/125.jpg", //아르고스1페
-            "958141283078119454": "https://cdn.discordapp.com/attachments/955563030362591352/970494725654208512/125.jpg", //아르고스2페
+            "958141031965130792": "https://i.imgur.com/a1EUP79.png", //낙원
+            "963934056666525766": "https://i.imgur.com/2pgZXTx.jpg",//6종카드작
+            "970489497684946964": "https://i.imgur.com/Gra8TTR.png", //중나
+            "970452969801797683": "https://i.imgur.com/5IW8Bpe.png", //이그렉시온
+            "958141396009746502": "https://i.imgur.com/M3NcVim", //요호
+            "958141432357613608": "https://i.imgur.com/bkqEby8.png", //벨가누스
+            "958141141520359444": "https://i.imgur.com/ObL6aLg.png", //오레하노말
+            "958141192938328064": "https://i.imgur.com/75rrAIN.png", //오레하하드
+            "958141240598212628": "https://i.imgur.com/9JyAN18.jpg", //아르고스1페
+            "958141283078119454": "https://i.imgur.com/9JyAN18.jpg", //아르고스2페
         }
         let limit = lineUp[partyName];
         let abyssThumbnailPics = abyssThumbnailObject[partyName];
