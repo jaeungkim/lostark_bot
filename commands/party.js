@@ -143,7 +143,7 @@ module.exports = {
             "963934056666525766": "https://i.imgur.com/2pgZXTx.jpg",//6종카드작
             "970489497684946964": "https://i.imgur.com/Gra8TTR.png", //중나
             "970452969801797683": "https://i.imgur.com/5IW8Bpe.png", //이그렉시온
-            "958141396009746502": "https://i.imgur.com/M3NcVim", //요호
+            "958141396009746502": "https://i.imgur.com/M3NcVim.png", //요호
             "958141432357613608": "https://i.imgur.com/bkqEby8.png", //벨가누스
             "958141141520359444": "https://i.imgur.com/ObL6aLg.png", //오레하노말
             "958141192938328064": "https://i.imgur.com/75rrAIN.png", //오레하하드
