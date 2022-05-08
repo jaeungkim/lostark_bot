@@ -63,6 +63,14 @@ module.exports = {
                     name: '아르고스 2페',
                     value: "958141283078119454",
                 },
+                {
+                    name: '영웅지도 품앗이',
+                    value: "972654863823568926",
+                },
+                {
+                    name: '전설지도 품앗이',
+                    value: "972654999844847636",
+                }
             ]
         },
         {
@@ -137,10 +145,12 @@ module.exports = {
             "958141192938328064": 4, //오레하하드
             "958141240598212628": 8, //아르고스1페
             "958141283078119454": 8, //아르고스2페
+            "972654863823568926": 4, //영웅지도
+            "972654999844847636": 4, //전설지도
         }
         const abyssThumbnailObject = {
             "958141031965130792": "https://i.imgur.com/a1EUP79.png", //낙원
-            "963934056666525766": "https://i.imgur.com/2pgZXTx.jpg",//6종카드작
+            "963934056666525766": "https://i.imgur.com/2pgZXTx.jpg", //6종카드작
             "970489497684946964": "https://i.imgur.com/Gra8TTR.png", //중나
             "970452969801797683": "https://i.imgur.com/5IW8Bpe.png", //이그렉시온
             "958141396009746502": "https://i.imgur.com/M3NcVim.png", //요호
@@ -149,6 +159,8 @@ module.exports = {
             "958141192938328064": "https://i.imgur.com/75rrAIN.png", //오레하하드
             "958141240598212628": "https://i.imgur.com/9JyAN18.jpg", //아르고스1페
             "958141283078119454": "https://i.imgur.com/9JyAN18.jpg", //아르고스2페
+            "972654863823568926": "https://i.imgur.com/qFs26gI.png", //영웅지도
+            "972654999844847636": "https://i.imgur.com/qFs26gI.png", //전설지도
         }
         let limit = lineUp[partyName];
         let abyssThumbnailPics = abyssThumbnailObject[partyName];
