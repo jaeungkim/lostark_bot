@@ -12,7 +12,19 @@ function updateEmbed(msg, embed, description, partyMember, limit) {
     embed.setDescription(description + partyMemberString).setTitle(`모집인원 : ${partyMember.size}/${limit}`);
     msg.edit({ embeds: [embed] });
 }
-
+function endEmbed(msg, embed, description, partyMember, limit) {
+    let partyMemberString = ""
+    if (partyMember.size > 0) {
+        partyMemberString += "\n\n파티멤버:";
+    }
+    let i = 1;
+    for (let [userId, role] of partyMember) {
+        partyMemberString += `\n ${i++}. <@${userId}> - ${role}`;
+    }
+    embed.setDescription(description + partyMemberString).setTitle(`	
+    마감되었습니다` );
+    msg.edit({ embeds: [embed] });
+}
 module.exports = {
     name: 'party',
     description: '파티 생성 가능합니다.',
@@ -152,20 +164,21 @@ module.exports = {
             "958141031965130792": "https://i.imgur.com/a1EUP79.png", //낙원
             "963934056666525766": "https://i.imgur.com/2pgZXTx.jpg", //6종카드작
             "970489497684946964": "https://i.imgur.com/Gra8TTR.png", //중나
-            "970452969801797683": "https://i.imgur.com/5IW8Bpe.png", //이그렉시온
+            "970452969801797683": "https://i.imgur.com/WFsJbJV.png", //이그렉시온
             "958141396009746502": "https://i.imgur.com/M3NcVim.png", //요호
             "958141432357613608": "https://i.imgur.com/bkqEby8.png", //벨가누스
             "958141141520359444": "https://i.imgur.com/ObL6aLg.png", //오레하노말
             "958141192938328064": "https://i.imgur.com/75rrAIN.png", //오레하하드
-            "958141240598212628": "https://i.imgur.com/9JyAN18.jpg", //아르고스1페
+            "958141240598212628": "https://i.imgur.com/a9SAtpt.png", //아르고스1페
             "958141283078119454": "https://i.imgur.com/9JyAN18.jpg", //아르고스2페
-            "972654863823568926": "https://i.imgur.com/qFs26gI.png", //영웅지도
-            "972654999844847636": "https://i.imgur.com/qFs26gI.png", //전설지도
+            "972654863823568926": "https://i.imgur.com/Rn0eBcp.png", //영웅지도
+            "972654999844847636": "https://i.imgur.com/Rn0eBcp.png", //전설지도
         }
         let limit = lineUp[partyName];
         let abyssThumbnailPics = abyssThumbnailObject[partyName];
         const partyMember = new Map();
-        const description = `\n모집파티: <@&${partyName}>\n음성채널: <#${channelCode}>\n작성자: ${userId}\n시간: ${timeName}\n\n<:DPS:970069528258179103> 딜러 신청\n<:SUPPORT:970069703533940756> 서포터 신청`;
+        const description = `\n모집파티: <@&${partyName}>\n음성채널: <#${channelCode}>\n작성자: ${userId}\n시간: ${timeName}\n\n<:DPS:970069528258179103> 딜러 신청\n<:SUPPORT:970069703533940756> 서포터 신청\n<:END:970069824715780157> 마감 (작성자만 클릭 가능 합니다)`;
+        let closed = false;
         let embed = new MessageEmbed()
             .setColor('#0099ff')
             .setTitle(`모집인원 : ${partyMember.size}/${limit}`)
@@ -174,35 +187,64 @@ module.exports = {
             .setTimestamp()
         channel.send({
             content: `<@&${partyName}> 파티 모집 합니다`,
-            embeds: [embed]
+            embeds: [embed],
         }).then(msg => {
             msg.react("970069528258179103"); //딜러 신청 이모지
             msg.react("970069703533940756"); //서포터 신청 이모지
+            msg.react("970069824715780157"); //마감 이모지
+
+            // 이모지 입력
             client.on('messageReactionAdd', async (reaction, user) => {
                 if (user.id === '968623822037205032') { return; }
                 if (reaction && reaction.message.id === msg.id) {
-                    if (!partyMember.has(user.id)) {
-                        partyMember.set(user.id, reaction.emoji.name);
-                        await updateEmbed(msg, embed, description, partyMember, limit);
+                    // 마감 로직
+                    if (reaction.emoji.name == 'END') {
+                        if (user.id == userId) {
+                            closed = true;
+                            await endEmbed(msg, embed, description, partyMember);
+                            //embed update
+                        } else {
+                            reaction.users.remove(user.id);
+                        }
+                        // 신청 로직
                     } else {
-                        reaction.users.remove(user.id);
+                        if (!closed && !partyMember.has(user.id)) {
+                            partyMember.set(user.id, reaction.emoji.name);
+                            await updateEmbed(msg, embed, description, partyMember, limit);
+                        } else {
+                            reaction.users.remove(user.id);
+                        }
+                        if (partyMember.size > limit) {
+                            reaction.users.remove(user.id);
+                        }
                     }
                 }
-                if (partyMember.size > limit) {
-                    reaction.users.remove(user.id);
-                    return;
-                }
             })
+
+            // 이모지 입력 해재
             client.on('messageReactionRemove', async (reaction, user) => {
                 if (user.id === '968623822037205032') { return; }
                 if (reaction && reaction.message.id === msg.id) {
-                    if (reaction.emoji.name !== partyMember.get(user.id)) { return; }
-                    if (partyMember.delete(user.id)) {
-                        await updateEmbed(msg, embed, description, partyMember, limit);
+                    // 마감 해재 로직
+                    if (reaction.emoji.name == 'END') {
+                        if (user.id == userId) {
+                            closed = false;
+                            await updateEmbed(msg, embed, description, partyMember, limit);
+                            //embed update
+                        } else {
+                            reaction.users.remove(user.id);
+                        }
+                        // 신청 해재 로직
+                    } else {
+                        if (reaction.emoji.name !== partyMember.get(user.id)) { return; }
+                        if (!closed && partyMember.delete(user.id)) {
+                            await updateEmbed(msg, embed, description, partyMember, limit);
+                        } else {
+                            reaction.users.remove(user.id);
+                        }
                     }
                 }
             });
-
         })
     },
 }
