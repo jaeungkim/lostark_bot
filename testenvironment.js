@@ -22,7 +22,7 @@ for (const file of commandFiles) {
 
 for (const file of prefixFiles) {
     const prefix = require(`./prefixes/${file}`);
-    client.prefixes.set(prefix.name, prefix);
+    client.prefixes.set(prefix.prefix, prefix);
 }
 
 // console.log(client.prefixes)
@@ -61,12 +61,12 @@ client.on('messageCreate', async message => {
     if (message.author.bot || !message.guild) return;
     if (!client.application?.owner) await client.application?.fetch();
 
-    const message = message.content.trim(); // message = !공략 발탄
-    let messageArray = message.split(" ")
+    const messsage = message.content.trim(); // message = !공략 발탄
+    let messageArray = messsage.split(" ")
     let prefix = client.prefixes.get(messageArray[0]);
     if (prefix !== undefined){
-        let raidName = messageArray[1];
-        let guide = prefix.raids.get(raidName);
+        let raidName = messageArray[1]; //발탄
+        let guide = prefix.raids[raidName];
         if (guide !== undefined) {
             console.log(guide);
         }

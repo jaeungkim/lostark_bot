@@ -1,4 +1,4 @@
 module.exports = {
-    name: '!hello',
+    prefix: '!hello',
     description: 'hello',
 }
