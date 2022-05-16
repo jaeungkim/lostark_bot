@@ -26,8 +26,6 @@ for (const file of prefixFiles) {
     client.prefixes.set(prefix.prefix, prefix);
 }
 
-// console.log(client.prefixes)
-
 const localRest = new REST({ version: '9' }).setToken(process.env.LOCAL_TOKEN);
 (async () => {
     try {
@@ -73,7 +71,7 @@ client.on('messageCreate', async message => {
         let raidName = messageArray[1]; //발탄, 비아키스
         let guide = prefix.raids[raidName]; 
         if (guide !== undefined) {
-            const exampleEmbed = new MessageEmbed().setColor('#0099ff')
+            const exampleEmbed = new MessageEmbed().setColor('#0099ff').setImage(guide.thumbnail)
                 .setTitle(`${guide.title}`).setDescription(`${guide.description}`);
             message.channel.send({ embeds: [exampleEmbed] })
         }
@@ -101,7 +99,7 @@ client.on('messageCreate', async message => {
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
-    // console.log(interaction)
+
     const command = client.commands.get(interaction.commandName);
     try {
         if (interaction.commandName === 'local') {
