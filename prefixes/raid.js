@@ -1,13 +1,7 @@
 module.exports = {
     prefix: '!공략',
-    raids: [
-        {
-            name: '발탄',
-            description: 'asdfasdfasdfasdf'
-        },
-        {
-            name: '비아키스',
-            description: 'aasdfasdfasdfaf'
-        }
-    ]
+    raids: {
+        발탄: '발탄공략',
+        비아키스: '비아키스공략'
+    }
 }
