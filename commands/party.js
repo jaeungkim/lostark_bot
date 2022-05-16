@@ -22,7 +22,7 @@ function endEmbed(msg, embed, description, partyMember, limit) {
         partyMemberString += `\n ${i++}. <@${userId}> - ${role}`;
     }
     embed.setDescription(description + partyMemberString).setTitle(`	
-    마감되었습니다` );
+    마감되었습니다` ).setColor("#ff5555");
     msg.edit({ embeds: [embed] });
 }
 module.exports = {
