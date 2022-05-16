@@ -1,4 +1,5 @@
 const { REST } = require('@discordjs/rest');
+const { MessageEmbed } = require('discord.js');
 const { Routes } = require('discord-api-types/v9');
 require('dotenv').config()
 const fs = require('node:fs');
@@ -62,13 +63,19 @@ client.on('messageCreate', async message => {
     if (!client.application?.owner) await client.application?.fetch();
 
     const messsage = message.content.trim(); // message = !공략 발탄
-    let messageArray = messsage.split(" ")
+    let messageArray = messsage.split(" ") //[!공략, 발탄]
     let prefix = client.prefixes.get(messageArray[0]);
-    if (prefix !== undefined){
-        let raidName = messageArray[1]; //발탄
-        let guide = prefix.raids[raidName];
+    if (prefix !== undefined && messageArray[0] === "!공략") { 
+        if (messageArray.length === 1) {
+            message.reply("공략은 발탄, 비아키스만 제공 합니다.");
+            return;
+        }
+        let raidName = messageArray[1]; //발탄, 비아키스
+        let guide = prefix.raids[raidName]; 
         if (guide !== undefined) {
-            console.log(guide);
+            const exampleEmbed = new MessageEmbed().setColor('#0099ff')
+                .setTitle(`${guide.title}`).setDescription(`${guide.description}`);
+            message.channel.send({ embeds: [exampleEmbed] })
         }
     }
 
@@ -95,12 +102,12 @@ client.on('messageCreate', async message => {
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
     // console.log(interaction)
-    const command = client.commands.get(interaction.commandName);    
+    const command = client.commands.get(interaction.commandName);
     try {
-        if (interaction.commandName ==='local') {
+        if (interaction.commandName === 'local') {
             interaction.reply({ content: `파티 모집`, ephemeral: true })
             command.execute(interaction, client)
-        } 
+        }
     } catch (error) {
         console.error(error);
         interaction.followUp({
