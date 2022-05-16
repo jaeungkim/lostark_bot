@@ -61,9 +61,15 @@ client.on('messageCreate', async message => {
     if (message.author.bot || !message.guild) return;
     if (!client.application?.owner) await client.application?.fetch();
 
-    const prefix = client.prefixes.get(message.content.trim());
-    if(prefix !== undefined){
-        console.log(prefix.description)
+    const message = message.content.trim(); // message = !공략 발탄
+    let messageArray = message.split(" ")
+    let prefix = client.prefixes.get(messageArray[0]);
+    if (prefix !== undefined){
+        let raidName = messageArray[1];
+        let guide = prefix.raids.get(raidName);
+        if (guide !== undefined) {
+            console.log(guide);
+        }
     }
 
     // if(message.content === "!공략"){
