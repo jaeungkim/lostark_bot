@@ -47,12 +47,12 @@ module.exports = {
                 { name: '파티 기준 계산법 입니다.', value: '(공대 / 지인)'},
                 { name: `손익분기점`, value: `${profitprice + goldemoji}`, inline: true},
                 { name: `분배금`, value: `${eachpartyprice + goldemoji}`, inline: true},
-                { name: '판매차익', value: `${sellprice + goldemoji} (수수료: ${price * 0.05}${goldemoji})`, inline: true},
+                { name: '판매차익', value: `${sellprice + goldemoji}`, inline: true},
                 { name: '\u200B', value: '\u200B' },
                 { name: '공팟 기준 계산법 입니다.', value: '(개인 이득)'},
                 { name: '입찰적정가', value: `${selfsellprice + goldemoji}`, inline: true},
                 { name: '분배금', value: `${distributedprice + goldemoji}`, inline: true},
-                { name: '판매차익', value: `${individualsellpriceprofit + goldemoji} (수수료: ${price * 0.05}${goldemoji})`, inline: true},
+                { name: '판매차익', value: `${individualsellpriceprofit + goldemoji}`, inline: true},
             )
             .setThumbnail('https://i.imgur.com/cE7xFGE.png')
             .setTimestamp()
