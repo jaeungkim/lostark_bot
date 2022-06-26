@@ -98,8 +98,8 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
     const command = client.commands.get(interaction.commandName);
     try {
-        if (interaction.commandName === 'party') {
-            interaction.reply({ content: `파티 모집`, ephemeral: true })
+        if (interaction.commandName === 'party' || interaction.commandName === 'raidcalculator') {
+            interaction.reply({ content: `${interaction.commandName}`, ephemeral: true })
             command.execute(interaction, client)
         }
     } catch (error) {

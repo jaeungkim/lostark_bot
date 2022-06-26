@@ -102,8 +102,8 @@ client.on('interactionCreate', async interaction => {
 
     const command = client.commands.get(interaction.commandName);
     try {
-        if (interaction.commandName === 'local') {
-            interaction.reply({ content: `파티 모집`, ephemeral: true })
+        if (interaction.commandName === 'local' || interaction.commandName === 'raidcalculator') {
+            interaction.reply({ content: `${interaction.commandName}`, ephemeral: true })
             command.execute(interaction, client)
         }
     } catch (error) {
