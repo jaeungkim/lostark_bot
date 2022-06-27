@@ -32,7 +32,7 @@ module.exports = {
         const individualsellpriceprofit = price - selfsellprice;
         const goldemoji = " <:GOLD:990737850767118406>";
         //embed
-        const title = `템 가격: ${price}${goldemoji} (수수료 5%: ${price * 0.05}${goldemoji})`;
+        const title = `템 가격: ${price}${goldemoji} (수수료 5%: ${Math.round(price * 0.05)}${goldemoji})`;
         const description = `파티 인원: ${partysize}`;
         
         let embed = new MessageEmbed()
@@ -41,8 +41,6 @@ module.exports = {
             .setTitle(title)
             .setDescription(description)
             .addFields(
-                { name: '\u200B', value: '\u200B' },
-                { name: '직접 사용시 입찰 추천 가격 입니다.', value: `${Math.ceil(price*0.75) + goldemoji}`},
                 { name: '\u200B', value: '\u200B' },
                 { name: '파티 기준 계산법 입니다.', value: '(공대 / 지인)'},
                 { name: `손익분기점`, value: `${profitprice + goldemoji}`, inline: true},
@@ -53,6 +51,8 @@ module.exports = {
                 { name: '입찰적정가', value: `${selfsellprice + goldemoji}`, inline: true},
                 { name: '분배금', value: `${distributedprice + goldemoji}`, inline: true},
                 { name: '판매차익', value: `${individualsellpriceprofit + goldemoji}`, inline: true},
+                { name: '\u200B', value: '\u200B' },
+                { name: '직접 사용시 입찰 추천 가격 입니다.', value: `${Math.ceil(price*0.75) + goldemoji}`},
             )
             .setThumbnail('https://i.imgur.com/cE7xFGE.png')
             .setTimestamp()
