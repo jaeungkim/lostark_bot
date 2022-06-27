@@ -20,7 +20,6 @@ module.exports = {
     execute(interaction, client) {
         //default chanenl values
         const channel = client.channels.cache.get(interaction.channelId);
-        console.log(interaction.member)
         // 계산 values
         const price = interaction.options.get('price').value; //템가격
         const partysize = interaction.options.get('partysize').value; //인원
@@ -42,12 +41,12 @@ module.exports = {
             .setDescription(description)
             .addFields(
                 { name: '\u200B', value: '\u200B' },
-                { name: '파티 기준 계산법 입니다.', value: '(공대 / 지인)'},
+                { name: '파티 기준 계산법 입니다. (공대 / 지인)', value: '\u200B'},
                 { name: `손익분기점`, value: `${profitprice + goldemoji}`, inline: true},
                 { name: `분배금`, value: `${eachpartyprice + goldemoji}`, inline: true},
                 { name: '판매차익', value: `${sellprice + goldemoji}`, inline: true},
                 { name: '\u200B', value: '\u200B' },
-                { name: '공팟 기준 계산법 입니다.', value: '(개인 이득)'},
+                { name: '공팟 기준 계산법 입니다. (개인 이득)', value: '\u200B'},
                 { name: '입찰적정가', value: `${selfsellprice + goldemoji}`, inline: true},
                 { name: '분배금', value: `${distributedprice + goldemoji}`, inline: true},
                 { name: '판매차익', value: `${individualsellpriceprofit + goldemoji}`, inline: true},
