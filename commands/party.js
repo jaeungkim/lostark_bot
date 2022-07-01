@@ -9,7 +9,7 @@ function updateEmbed(msg, embed, description, partyMember, limit) {
     for (let [userId, role] of partyMember) {
         partyMemberString += `\n ${i++}. <@${userId}> - ${role}`;
     }
-    embed.setDescription(description + partyMemberString).setTitle(`모집인원 : ${partyMember.size}/${limit}`);
+    embed.setDescription(description + partyMemberString).setTitle(`모집인원 : ${partyMember.size}/${limit}`).setColor("#98ff98");
     msg.edit({ embeds: [embed] });
 }
 function endEmbed(msg, embed, description, partyMember, limit) {
