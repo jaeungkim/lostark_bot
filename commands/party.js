@@ -102,7 +102,12 @@ module.exports = {
                 {
                     name: '전설지도 품앗이',
                     value: "972654999844847636",
+                },
+                {
+                    name: '16인점령전',
+                    value: '992863210027876542',
                 }
+                
             ]
         },
         {
@@ -195,7 +200,8 @@ module.exports = {
             "958141319417581598": 8, //아르고스3페
             "976236274614665248": 8, //발탄 노말
             "972654863823568926": 4, //영웅지도
-            "972654999844847636": 4, //전설지도         
+            "972654999844847636": 4, //전설지도    
+            "992863210027876542": 16, //트랭퀼     
         }
         const abyssThumbnailObject = {
             "958141031965130792": "https://i.imgur.com/a1EUP79.png", //낙원
@@ -215,6 +221,7 @@ module.exports = {
             "976236274614665248": "https://i.imgur.com/9lzBT0g.png", //발탄 노말
             "972654863823568926": "https://i.imgur.com/Rn0eBcp.png", //영웅지도
             "972654999844847636": "https://i.imgur.com/Rn0eBcp.png", //전설지도
+            "992863210027876542": "https://i.imgur.com/kgkBMei.png", //트랭퀼   
         }
         let limit = lineUp[partyName];
         let abyssThumbnailPics = abyssThumbnailObject[partyName];
