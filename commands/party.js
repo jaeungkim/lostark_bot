@@ -171,6 +171,12 @@ module.exports = {
       description: "시간",
       required: true,
     },
+    {
+      name: "spec",
+      type: 3,
+      description: "최소 스펙",
+      required: false,
+    },
   ],
   execute(interaction, client) {
     const partyName = interaction.options.get("partyname").value;
