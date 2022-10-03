@@ -103,6 +103,10 @@ module.exports = {
           name: "비아 하드",
           value: "995795772413071502",
         },
+        {
+          name: "쿠크세이튼",
+          value: "1026310971356102677",
+        },
       ],
     },
     {
@@ -163,6 +167,18 @@ module.exports = {
           name: "·🎮·던전·M",
           value: "983160674026942564",
         },
+        {
+          name: "·🎮·던전·N",
+          value: "1025391419734626385",
+        },
+        {
+          name: "·🎮·던전·O",
+          value: "1025389952915222578",
+        },
+        {
+          name: "·🎮·던전·P",
+          value: "1025391028330561658",
+        },
       ],
     },
     {
@@ -207,6 +223,7 @@ module.exports = {
       "995791564922179585": 8, //발탄 하드
       "995795764385169409": 8, //비아 노말
       "995795772413071502": 8, //비아 하드
+      "1026310971356102677": 4, //쿠크
     };
     const abyssThumbnailObject = {
       "958141031965130792": "https://i.imgur.com/a1EUP79.png", //낙원
@@ -224,6 +241,7 @@ module.exports = {
       "995791564922179585": "https://i.imgur.com/NuskeE7.png", //발탄 하드
       "995795764385169409": "https://i.imgur.com/7TeAcNW.png", //비아 노말
       "995795772413071502": "https://i.imgur.com/7TeAcNW.png", //비아 하드
+      "1026310971356102677": "https://i.imgur.com/mXSA90P.jpg", //쿠크
     };
     let limit = lineUp[partyName];
     let abyssThumbnailPics = abyssThumbnailObject[partyName];
