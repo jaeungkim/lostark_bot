@@ -112,55 +112,55 @@ module.exports = {
       required: true,
       choices: [
         {
-          name: "👛CHANEL",
+          name: "·🎮·던전·A",
           value: "954163198599262258",
         },
         {
-          name: "👓Gucci",
+          name: "·🎮·던전·B",
           value: "937590271930163206",
         },
         {
-          name: "👔Thom Browne",
+          name: "·🎮·던전·C",
           value: "961829755961884702",
         },
         {
-          name: "👜Louis Vuitton",
+          name: "·🎮·던전·D",
           value: "968154468506030111",
         },
         {
-          name: "🥼MONCLER",
+          name: "·🎮·던전·E",
           value: "956676148039942154",
         },
         {
-          name: "👠VALENTINO",
+          name: "·🎮·던전·F",
           value: "969405184981733426",
         },
         {
-          name: "💼Hermes",
+          name: "·🎮·던전·G",
           value: "988076596793597982",
         },
         {
-          name: "🧥Burberry",
+          name: "·🎮·던전·H",
           value: "937590271930163205",
         },
         {
-          name: "👞Cartier",
+          name: "·🎮·던전·I",
           value: "954163184925827092",
         },
         {
-          name: "👑Dior",
+          name: "·🎮·던전·J",
           value: "968154355448561744",
         },
         {
-          name: "👟Dsquared2",
+          name: "·🎮·던전·K",
           value: "957097126393970768",
         },
         {
-          name: "👒Chloe",
+          name: "·🎮·던전·L",
           value: "963943310806880306",
         },
         {
-          name: "🩳Dongdaemun",
+          name: "·🎮·던전·M",
           value: "983160674026942564",
         },
       ],
