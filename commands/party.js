@@ -174,6 +174,32 @@ module.exports = {
       type: 3,
       description: "시간",
       required: true,
+      choices: [
+        {
+          name: "5분 후",
+          value: "5분 후",
+        },
+        {
+          name: "10분 후",
+          value: "10분 후",
+        },
+        {
+          name: "15분 후",
+          value: "15분 후",
+        },
+        {
+          name: "30분 후",
+          value: "30분 후",
+        },
+        {
+          name: "45분 후",
+          value: "45분 후",
+        },
+        {
+          name: "1시간 후",
+          value: "1시간 후",
+        },
+      ],
     },
     {
       name: "spec",
@@ -240,9 +266,27 @@ module.exports = {
     let limit = lineUp[partyName];
     let abyssThumbnailPics = abyssThumbnailObject[partyName];
     const partyMember = new Map();
-    const description = `\n모집파티: <@&${partyName}>\n음성채널: <#${channelCode}>\n작성자: ${userId}\n시간: ${timeName}\n${
+
+    let timestampUTC = Math.floor(new Date().getTime() / 1000);
+    if (timeName == "5분 후") {
+      timestampUTC = Math.floor((new Date().getTime() + 5 * 60 * 1000) / 1000);
+    } else if (timeName == "10분 후") {
+      timestampUTC = Math.floor((new Date().getTime() + 10 * 60 * 1000) / 1000);
+    } else if (timeName == "15분 후") {
+      timestampUTC = Math.floor((new Date().getTime() + 15 * 60 * 1000) / 1000);
+    } else if (timeName == "30분 후") {
+      timestampUTC = Math.floor((new Date().getTime() + 30 * 60 * 1000) / 1000);
+    } else if (timeName == "45분 후") {
+      timestampUTC = Math.floor((new Date().getTime() + 45 * 60 * 1000) / 1000);
+    } else if (timeName == "1시간 후") {
+      timestampUTC = Math.floor((new Date().getTime() + 60 * 60 * 1000) / 1000);
+    } else {
+      return;
+    }
+
+    const description = `\n모집파티: <@&${partyName}>\n음성채널: <#${channelCode}>\n작성자: ${userId}\n시간: ${timeName}${` <t:${timestampUTC}:t>`}\n${
       specName !== undefined ? `최소스펙: ${specName}\n` : ``
-    }\n<:DPS:970069528258179103> 딜러 신청\n<:SUPPORT:970069703533940756> 서포터 신청\n<:END:970069824715780157> 마감 (작성자만 클릭 가능 합니다)`;
+    }\n <:DPS:975209678600540170> 딜러 신청\n<:SUPPORT:975209691963609128> 서포터 신청\n<:END:975209651748622396> 마감 (작성자만 클릭 가능 합니다)`;
     let closed = false;
     let embed = new MessageEmbed()
       .setColor("#0099ff")
