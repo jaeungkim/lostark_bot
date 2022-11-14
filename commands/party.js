@@ -210,7 +210,7 @@ module.exports = {
   ],
   execute(interaction, client) {
     const partyName = interaction.options.get("partyname").value;
-    const channelCode = interaction.options.get("channel").value;
+    // const channelCode = interaction.options.get("channel").value;
     const userId = client.users.cache.get(interaction.user.id);
     const timeName = interaction.options.get("time").value;
 
@@ -284,7 +284,7 @@ module.exports = {
       return;
     }
 
-    const description = `\n모집파티: <@&${partyName}>\n음성채널: <#${channelCode}>\n작성자: ${userId}\n시간: ${timeName}${` <t:${timestampUTC}:t>`}\n${
+    const description = `\n모집파티: <@&${partyName}>\n작성자: ${userId}\n시간: ${timeName}${` <t:${timestampUTC}:t>`}\n${
       specName !== undefined ? `최소스펙: ${specName}\n` : ``
     }\n <:DPS:975209678600540170> 딜러 신청\n<:SUPPORT:975209691963609128> 서포터 신청\n<:END:975209651748622396> 마감 (작성자만 클릭 가능 합니다)`;
     let closed = false;
