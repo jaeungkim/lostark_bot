@@ -286,7 +286,7 @@ module.exports = {
 
     const description = `\n모집파티: <@&${partyName}>\n작성자: ${userId}\n시간: ${timeName}${` <t:${timestampUTC}:t>`}\n${
       specName !== undefined ? `최소스펙: ${specName}\n` : ``
-    }\n:DPS: 딜러 신청\n:SUPPORT: 서포터 신청\n:END: 마감 (작성자만 클릭 가능 합니다)`;
+    }\n<:DPS:970069528258179103> 딜러 신청\n<:SUPPORT:970069703533940756> 서포터 신청\n<:END:970069824715780157> 마감 (작성자만 클릭 가능 합니다)`;
     let closed = false;
     let embed = new MessageEmbed()
       .setColor("#0099ff")
