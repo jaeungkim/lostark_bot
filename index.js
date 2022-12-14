@@ -10,19 +10,12 @@ const clientId = '968623822037205032'; //올스타
 const guildId = '937590271930163200'; //올스타
 
 client.commands = new Discord.Collection();
-client.prefixes = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-const prefixFiles = fs.readdirSync('./prefixes').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
-}
-
-for (const file of prefixFiles) {
-    const prefix = require(`./prefixes/${file}`);
-    client.prefixes.set(prefix.prefix, prefix);
 }
 
 const rest = new REST({ version: '9' }).setToken(process.env.BOT_TOKEN);
