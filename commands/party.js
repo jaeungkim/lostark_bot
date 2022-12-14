@@ -264,10 +264,10 @@ module.exports = {
       "995795772413071502": "https://i.imgur.com/7TeAcNW.png", //비아 하드
       "1026310971356102677": "https://i.imgur.com/mXSA90P.jpg", //쿠크
       "1039241385141866617": "https://i.imgur.com/hILUSzt.png", //데칼 본부
-      "1050431080076943390": "https://i.imgur.com/hILUSzt.png", //칼엘리고스
-      "1050428978135040050": "https://i.imgur.com/hILUSzt.png", //아브-노말12
-      "1050428987635142807": "https://i.imgur.com/hILUSzt.png", //아브-노말34
-      "1050428990256595015": "https://i.imgur.com/hILUSzt.png", //아브-노말56
+      "1050431080076943390": "https://i.imgur.com/ESXZpHZ.png", //칼엘리고스
+      "1050428978135040050": "https://i.imgur.com/YthsNCa.png", //아브-노말12
+      "1050428987635142807": "https://i.imgur.com/YthsNCa.png", //아브-노말34
+      "1050428990256595015": "https://i.imgur.com/YthsNCa.png", //아브-노말56
     };
     let limit = lineUp[partyName];
     let abyssThumbnailPics = abyssThumbnailObject[partyName];
