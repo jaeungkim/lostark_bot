@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "if-env NODE_ENV=production && node index.js ||node testenvironment.js"
+    "start": "node index.js"
   },
   "author": "dambae",
   "dependencies": {
