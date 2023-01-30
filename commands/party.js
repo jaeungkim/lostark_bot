@@ -1,5 +1,7 @@
 const { MessageEmbed } = require("discord.js");
-
+// const { Guild } = require('discord.js');
+// const guild = new Guild('937590271930163200');
+// const allstarRole = '940660542975139841';
 function updateEmbed(msg, embed, description, partyMember, limit) {
   let partyMemberString = "";
   if (partyMember.size > 0) {
@@ -165,7 +167,6 @@ module.exports = {
     // const channelCode = interaction.options.get("channel").value;
     const userId = client.users.cache.get(interaction.user.id);
     const timeName = interaction.options.get("time").value;
-
     //최소 요구 스펙 option check
     let specName;
     interaction.options.get("spec") !== null
@@ -173,7 +174,7 @@ module.exports = {
       : null;
 
     const channel = client.channels.cache.get(interaction.channelId);
-    const lineUp = { 
+    const lineUp = {
       "1069159596154953738": 4, //요호
       "1069159798463008799": 4, //데칼
       "1069159857996972082": 4, //쿤겔
@@ -192,7 +193,7 @@ module.exports = {
       "1069160697059094579": 4, //쿠크세이튼
       "1069160758329487450": 8, //아브12
       "1069160814294085662": 8, //아브14
-      "1069160878798295090": 8  //아브16
+      "1069160878798295090": 8, //아브16
     };
     const abyssThumbnailObject = {
       "1069159596154953738": "https://i.imgur.com/M3NcVim.png", //요호
@@ -213,7 +214,7 @@ module.exports = {
       "1069160697059094579": "https://i.imgur.com/mXSA90P.jpg", //쿠크세이튼
       "1069160758329487450": "https://i.imgur.com/YthsNCa.png", //아브12
       "1069160814294085662": "https://i.imgur.com/YthsNCa.png", //아브14
-      "1069160878798295090": "https://i.imgur.com/YthsNCa.png"  //아브16
+      "1069160878798295090": "https://i.imgur.com/YthsNCa.png", //아브16
     };
     let limit = lineUp[partyName];
     let abyssThumbnailPics = abyssThumbnailObject[partyName];
