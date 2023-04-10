@@ -178,7 +178,7 @@ module.exports = {
       "1069160878798295090": "https://i.imgur.com/YthsNCa.png", //아브16
       "1095112450594050228": "https://i.imgur.com/ApXMhy6.png", //하브12
       "1095112419572994058": "https://i.imgur.com/BLZWYRE.jpg", //하브14
-      "1095112648984625283": "https://i.imgur.com/h54Mkvz.jpg", //하브16
+      "1095112648984625283": "https://i.imgur.com/REQuQtH.jpg", //하브16
     };
     let limit = lineUp[partyName];
     let abyssThumbnailPics = abyssThumbnailObject[partyName];
