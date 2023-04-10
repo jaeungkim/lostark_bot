@@ -84,6 +84,18 @@ module.exports = {
           name: "아브-노말16",
           value: "1069160878798295090",
         },
+        {
+          name: "아브-하드12",
+          value: "1095112450594050228",
+        },
+        {
+          name: "아브-하드14",
+          value: "1095112419572994058",
+        },
+        {
+          name: "아브-하드16",
+          value: "1095112648984625283",
+        },
       ],
     },
     {
@@ -148,6 +160,9 @@ module.exports = {
       "1069160758329487450": 8, //아브12
       "1069160814294085662": 8, //아브14
       "1069160878798295090": 8, //아브16
+      "1095112450594050228": 8, //하브12
+      "1095112419572994058": 8, //하브14
+      "1095112648984625283": 8, //하브16
     };
     const abyssThumbnailObject = {
       "1069159798463008799": "https://i.imgur.com/hILUSzt.png", //데칼
@@ -161,6 +176,9 @@ module.exports = {
       "1069160758329487450": "https://i.imgur.com/YthsNCa.png", //아브12
       "1069160814294085662": "https://i.imgur.com/YthsNCa.png", //아브14
       "1069160878798295090": "https://i.imgur.com/YthsNCa.png", //아브16
+      "1095112450594050228": "https://i.imgur.com/YthsNCa.png", //하브12
+      "1095112419572994058": "https://i.imgur.com/YthsNCa.png", //하브14
+      "1095112648984625283": "https://i.imgur.com/YthsNCa.png", //하브16
     };
     let limit = lineUp[partyName];
     let abyssThumbnailPics = abyssThumbnailObject[partyName];
