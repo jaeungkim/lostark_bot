@@ -23,9 +23,9 @@ module.exports = {
 
   execute(interaction, client) {
     const channel = client.channels.cache.get(interaction.channelId);
-    const amountOfNormalTickets = interaction.options.get("normal").value;
-    const amountofHardTickets = interaction.options.get("hard").value;
-    const amountofHellTickets = interaction.options.get("hell").value;
+    const amountOfNormalTickets = interaction.options.get("normal").value || 0;
+    const amountofHardTickets = interaction.options.get("hard").value || 0;
+    const amountofHellTickets = interaction.options.get("hell").value || 0;
     // const profitprice = Math.round(
     //   (price * 0.95 * (partysize - 1)) / partysize
     // );
