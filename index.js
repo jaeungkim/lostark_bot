@@ -38,7 +38,10 @@ client.on("ready", () => {
 });
 
 client.on("interactionCreate", async (interaction) => {
-  // if (!interaction.isCommand()) return;
+  if (!interaction.isCommand()) return;
+
+  const command = client.commands.get(interaction.commandName);
+  if (!command) return;
 
   if (
     !interaction.member.roles.cache.hasAny(
@@ -52,23 +55,6 @@ client.on("interactionCreate", async (interaction) => {
       ephemeral: true,
     });
   }
-
-  // Add this block to handle select menu interactions
-  if (interaction.isSelectMenu()) {
-    const command = client.commands.get("bossrush");
-    if (!command) return;
-
-    const selectedTicketType = interaction.values[0];
-    let selectedTickets = {};
-    selectedTickets[selectedTicketType] = 1;
-
-    await interaction.update({ content: `선택한 티켓: ${selectedTicketType}`, components: [] });
-    await command.execute(interaction, client, selectedTickets);
-    return;
-  }
-
-  const command = client.commands.get(interaction.commandName);
-  if (!command) return;
 
   try {
     await command.execute(interaction, client);
