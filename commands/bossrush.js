@@ -97,6 +97,7 @@ module.exports = {
         value: `${rewards.marvelousHonorLeapStone}`,
         inline: true,
       },
+      { name: "\u200B", value: "\u200B" },
       { name: "카드경험치", value: `${rewards.cardExp}`, inline: true },
       { name: "\u200B", value: "\u200B" },
     ];
