@@ -58,14 +58,23 @@ module.exports = {
     },
   ],
 
-  
   execute(interaction, client) {
     const channel = client.channels.cache.get(interaction.channelId);
-    const amountOfNormalTickets = interaction.options.get("normal")?.value ?? 0;
-    const amountofHardTickets = interaction.options.get("hard")?.value ?? 0;
-    const amountofHellTickets = interaction.options.get("hell")?.value ?? 0;
-    
-    const rewards = calculateRewards(amountOfNormalTickets, amountofHardTickets, amountofHellTickets);
+    const amountOfNormalTickets = Number(
+      interaction.options.get("normal")?.value ?? 0
+    );
+    const amountofHardTickets = Number(
+      interaction.options.get("hard")?.value ?? 0
+    );
+    const amountofHellTickets = Number(
+      interaction.options.get("hell")?.value ?? 0
+    );
+
+    const rewards = calculateRewards(
+      amountOfNormalTickets,
+      amountofHardTickets,
+      amountofHellTickets
+    );
 
     const title = `티켓 갯수: 노말: ${amountOfNormalTickets} |  하드: ${amountofHardTickets} | 헬: ${amountofHellTickets}`;
     const description = `보스러쉬 계산기 입니다.`;
@@ -83,7 +92,11 @@ module.exports = {
       { name: "\u200B", value: "\u200B" },
       { name: `명돌`, value: `${rewards.honorLeapStone}`, inline: true },
       { name: `위명돌`, value: `${rewards.greatHonorLeapStone}`, inline: true },
-      { name: "경명돌", value: `${rewards.marvelousHonorLeapStone}`, inline: true },
+      {
+        name: "경명돌",
+        value: `${rewards.marvelousHonorLeapStone}`,
+        inline: true,
+      },
       { name: "카드경험치", value: `${rewards.cardExp}`, inline: true },
       { name: "\u200B", value: "\u200B" },
     ];
