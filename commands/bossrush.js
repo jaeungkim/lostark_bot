@@ -8,19 +8,16 @@ module.exports = {
       name: "normal",
       type: 3,
       description: "회랑 하드 티켓 갯수",
-      required: true,
     },
     {
       name: "hard",
       type: 3,
       description: "회랑 하드 티켓 갯수",
-      required: true,
     },
     {
       name: "hell",
       type: 3,
       description: "회랑 헬 티켓 갯수",
-      required: true,
     },
   ],
 
@@ -40,19 +37,19 @@ module.exports = {
     // );
     // const individualsellpriceprofit = price - selfsellprice;
 
-    const title = `티켓 갯수: ${amountOfNormalTickets} |  ${amountofHardTickets} | ${amountofHellTickets}`
+    const title = `티켓 갯수: ${amountOfNormalTickets} |  ${amountofHardTickets} | ${amountofHellTickets}`;
     // const description = `파티 인원: ${partysize}`;
     const fields = [
       { name: "\u200B", value: "\u200B" },
-      { name: "2레벨", value: "1", inline: true},
-      { name: "3레벨", value: "1", inline: true},
-      { name: "4레벨", value: "1", inline: true},
-      { name: "5레벨", value: "1", inline: true},
-      { name: "6레벨", value: "1", inline: true},
-      { name: "7레벨", value: "1", inline: true},
-      { name: "8레벨", value: "1", inline: true},
-      { name: "9레벨", value: "1", inline: true},
-      { name: "10레벨", value: "1", inline: true},
+      { name: "2레벨", value: "1", inline: true },
+      { name: "3레벨", value: "1", inline: true },
+      { name: "4레벨", value: "1", inline: true },
+      { name: "5레벨", value: "1", inline: true },
+      { name: "6레벨", value: "1", inline: true },
+      { name: "7레벨", value: "1", inline: true },
+      { name: "8레벨", value: "1", inline: true },
+      { name: "9레벨", value: "1", inline: true },
+      { name: "10레벨", value: "1", inline: true },
       { name: `명돌`, value: `1`, inline: true },
       { name: `위명돌`, value: `1`, inline: true },
       { name: "경명돌", value: `1`, inline: true },
@@ -73,4 +70,4 @@ module.exports = {
 
     channel.send({ content: "보스러쉬 계산기 입니다.", embeds: [embed] });
   },
-}
+};
