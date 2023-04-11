@@ -66,6 +66,7 @@ module.exports = {
       .setTitle(title)
       .addFields(fields)
       .setThumbnail("https://i.imgur.com/cE7xFGE.png")
+      .setFooter("\u3000".repeat(10/*any big number works too*/)+"|")
       .setTimestamp();
 
     channel.send({ content: "보스러쉬 계산기 입니다.", embeds: [embed] });
