@@ -104,14 +104,19 @@ module.exports = {
       { name: "\u200B", value: "\u200B" },
     ];
 
-    for (let i = 0; i < 9; i++) {
-      fields[i].value = combinedGems[i];
-    }
-    fields[11].value = totalRewards.honorLeapStones;
-    fields[12].value = totalRewards.greatHonorLeapStones;
-    fields[13].value = totalRewards.marvelousHonorLeapStones;
-    fields[14].name = "카드경험치";
-    fields[14].value = totalRewards.cardExp;
+    fields.forEach((field, index) => {
+      if (index >= 1 && index <= 9) {
+        field.value = combinedGems[index - 1];
+      } else if (index === 11) {
+        field.value = totalRewards.honorLeapStones;
+      } else if (index === 12) {
+        field.value = totalRewards.greatHonorLeapStones;
+      } else if (index === 13) {
+        field.value = totalRewards.marvelousHonorLeapStones;
+      } else if (index === 14) {
+        field.value = totalRewards.cardExp;
+      }
+    });
 
     const embed = new EmbedBuilder()
       .setAuthor({
