@@ -1,44 +1,40 @@
 const { EmbedBuilder } = require("discord.js");
 
-function calculateRewards(normalTickets, hardTickets, hellTickets) {
-  const normalRewards = {
-    gems: [0, 0, 1, 2, 0, 0, 0, 0, 0],
-    honorLeapStones: 17,
-    greatHonorLeapStones: 19,
-    cardExp: 0,
+function calculateRewards(normal, hard, hell) {
+  let rewards = {
+    level2: 2 * hell,
+    level3: normal + hard + 2 * hell,
+    level4: 2 * (normal + hard + hell),
+    level5: 0,
+    level6: 0,
+    level7: 0,
+    level8: 0,
+    level9: 0,
+    level10: 0,
+    honorLeapStone: 17 * normal,
+    greatHonorLeapStone: 18 * normal,
+    marvelousHonorLeapStone: 15 * hard + 26 * hell,
+    cardExp: 8500 * (hard + hell),
   };
 
-  const hardRewards = {
-    gems: [0, 0, 0, 1, 2, 0, 0, 0, 0],
-    marvelousHonorLeapStones: 15,
-    cardExp: 8500,
-  };
+  mergeGems(rewards, 2);
 
-  const hellRewards = {
-    gems: [0, 2, 2, 2, 0, 0, 0, 0, 0],
-    marvelousHonorLeapStones: 26,
-    cardExp: 8500,
-  };
-
-  const totalRewards = {
-    gems: normalRewards.gems.map((gem, index) => gem * normalTickets + hardRewards.gems[index] * hardTickets + hellRewards.gems[index] * hellTickets),
-    honorLeapStones: normalTickets * normalRewards.honorLeapStones,
-    greatHonorLeapStones: normalTickets * normalRewards.greatHonorLeapStones,
-    marvelousHonorLeapStones: hardTickets * hardRewards.marvelousHonorLeapStones + hellTickets * hellRewards.marvelousHonorLeapStones,
-    cardExp: hardTickets * hardRewards.cardExp + hellTickets * hellRewards.cardExp,
-  };
-
-  return totalRewards;
+  return rewards;
 }
 
-function combineGems(gems) {
-  for (let i = 0; i < gems.length - 1; i++) {
-    while (gems[i] >= 3) {
-      gems[i] -= 3;
-      gems[i + 1]++;
-    }
+function mergeGems(rewards, level) {
+  if (level >= 10) return;
+
+  const nextLevel = level + 1;
+  const gemsToMerge = 3;
+
+  while (rewards[`level${level}`] >= gemsToMerge) {
+    const mergedGems = Math.floor(rewards[`level${level}`] / gemsToMerge);
+    rewards[`level${nextLevel}`] += mergedGems;
+    rewards[`level${level}`] -= mergedGems * gemsToMerge;
   }
-  return gems;
+
+  mergeGems(rewards, nextLevel);
 }
 
 module.exports = {
@@ -68,42 +64,27 @@ module.exports = {
     const amountOfNormalTickets = interaction.options.get("normal")?.value ?? 0;
     const amountofHardTickets = interaction.options.get("hard")?.value ?? 0;
     const amountofHellTickets = interaction.options.get("hell")?.value ?? 0;
-
-    // const totalRewards = calculateRewards(amountOfNormalTickets, amountofHardTickets, amountofHellTickets);
-    // const combinedGems = combineGems(totalRewards.gems);
     
-    const numberofLevel2Gems = 0;
-    const numberofLevel3Gems = 0;
-    const numberofLevel4Gems = 0;
-    const numberofLevel5Gems = 0;
-    const numberofLevel6Gems = 0;
-    const numberofLevel7Gems = 0;
-    const numberofLevel8Gems = 0;
-    const numberofLevel9Gems = 0;
-    const numberofLevel10Gems = 0;
-
-    const numberofHonorLeapStone = 0;
-    const numberofGreatHonorLeapStone = 0;
-    const numberofMarvelousHonorLeapStone = 0;
+    const rewards = calculateRewards(amountOfNormalTickets, amountofHardTickets, amountofHellTickets);
 
     const title = `티켓 갯수: 노말: ${amountOfNormalTickets} |  하드: ${amountofHardTickets} | 헬: ${amountofHellTickets}`;
     const description = `보스러쉬 계산기 입니다.`;
     const fields = [
       { name: "\u200B", value: "\u200B" },
-      { name: "2레벨", value: `${numberofLevel2Gems}`, inline: true },
-      { name: "3레벨", value: `${numberofLevel3Gems}`, inline: true },
-      { name: "4레벨", value: `${numberofLevel4Gems}`, inline: true },
-      { name: "5레벨", value: `${numberofLevel5Gems}`, inline: true },
-      { name: "6레벨", value: `${numberofLevel6Gems}`, inline: true },
-      { name: "7레벨", value: `${numberofLevel7Gems}`, inline: true },
-      { name: "8레벨", value: `${numberofLevel8Gems}`, inline: true },
-      { name: "9레벨", value: `${numberofLevel9Gems}`, inline: true },
-      { name: "10레벨", value: `${numberofLevel10Gems}`, inline: true },
+      { name: "2레벨", value: `${rewards.level2}`, inline: true },
+      { name: "3레벨", value: `${rewards.level3}`, inline: true },
+      { name: "4레벨", value: `${rewards.level4}`, inline: true },
+      { name: "5레벨", value: `${rewards.level5}`, inline: true },
+      { name: "6레벨", value: `${rewards.level6}`, inline: true },
+      { name: "7레벨", value: `${rewards.level7}`, inline: true },
+      { name: "8레벨", value: `${rewards.level8}`, inline: true },
+      { name: "9레벨", value: `${rewards.level9}`, inline: true },
+      { name: "10레벨", value: `${rewards.level10}`, inline: true },
       { name: "\u200B", value: "\u200B" },
-      { name: `명돌`, value: `${numberofHonorLeapStone}`, inline: true },
-      { name: `위명돌`, value: `${numberofGreatHonorLeapStone}`, inline: true },
-      { name: "경명돌", value: `${numberofMarvelousHonorLeapStone}`, inline: true },
-      { name: "카드경험치", value: "\u200B" },
+      { name: `명돌`, value: `${rewards.honorLeapStone}`, inline: true },
+      { name: `위명돌`, value: `${rewards.greatHonorLeapStone}`, inline: true },
+      { name: "경명돌", value: `${rewards.marvelousHonorLeapStone}`, inline: true },
+      { name: "카드경험치", value: `${rewards.cardExp}`, inline: true },
       { name: "\u200B", value: "\u200B" },
     ];
 
