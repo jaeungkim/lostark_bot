@@ -26,7 +26,7 @@ module.exports = {
       const hardTicket = interaction.options.get("회랑 하드").value;
       const hellTicket = interaction.options.get("회랑 헬").value;
   
-      const title = `보스러쉬 티켓: ${typeofTicket}, 갯수: ${amountofTickets})`;
+      const title = `보스러쉬 티켓:`;
       const description = `보스러쉬`;
   
       const fields = [
