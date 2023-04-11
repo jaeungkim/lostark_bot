@@ -40,9 +40,6 @@ client.on("ready", () => {
 client.on("interactionCreate", async (interaction) => {
   // if (!interaction.isCommand()) return;
 
-  const command = client.commands.get(interaction.commandName);
-  if (!command) return;
-
   if (
     !interaction.member.roles.cache.hasAny(
       "940660542975139841",
@@ -69,6 +66,9 @@ client.on("interactionCreate", async (interaction) => {
     await command.execute(interaction, client, selectedTickets);
     return;
   }
+
+  const command = client.commands.get(interaction.commandName);
+  if (!command) return;
 
   try {
     await command.execute(interaction, client);

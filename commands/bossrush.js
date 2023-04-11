@@ -7,6 +7,7 @@ const {
 module.exports = {
   name: "bossrush",
   description: "보스러쉬 보석 갯수 calculator",
+  
   async execute(interaction, client, selectedTickets = {}) {
     if (!Object.keys(selectedTickets).length) {
       const selectMenu = new MessageSelectMenu()
