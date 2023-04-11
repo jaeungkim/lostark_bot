@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    name: "bossRushCalculator",
+    name: "bossrush",
     description: "보스러쉬 보석 갯수 calculator",
     options: [
       {
