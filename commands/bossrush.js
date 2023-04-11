@@ -23,22 +23,12 @@ module.exports = {
 
   execute(interaction, client) {
     const channel = client.channels.cache.get(interaction.channelId);
-    const amountOfNormalTickets = interaction.options.get("normal").value || 0;
-    const amountofHardTickets = interaction.options.get("hard").value || 0;
-    const amountofHellTickets = interaction.options.get("hell").value || 0;
-    // const profitprice = Math.round(
-    //   (price * 0.95 * (partysize - 1)) / partysize
-    // );
-    // const eachpartyprice = Math.round((price * 0.95) / partysize);
-    // const sellprice = price - profitprice;
-    // const selfsellprice = Math.ceil(profitprice / 1.1);
-    // const distributedprice = Math.round(
-    //   selfsellprice / (partysize - 1 / partysize)
-    // );
-    // const individualsellpriceprofit = price - selfsellprice;
+    const amountOfNormalTickets = interaction.options.get("normal")?.value ?? 0;
+    const amountofHardTickets = interaction.options.get("hard")?.value ?? 0;
+    const amountofHellTickets = interaction.options.get("hell")?.value ?? 0;
 
-    const title = `티켓 갯수: ${amountOfNormalTickets} |  ${amountofHardTickets} | ${amountofHellTickets}`;
-    // const description = `파티 인원: ${partysize}`;
+    const title = `티켓 갯수: 노말: ${amountOfNormalTickets} |  하드: ${amountofHardTickets} | 헬: ${amountofHellTickets}`;
+    const description = `보스러쉬 계산기 입니다.`;
     const fields = [
       { name: "\u200B", value: "\u200B" },
       { name: "2레벨", value: "1", inline: true },
@@ -50,6 +40,7 @@ module.exports = {
       { name: "8레벨", value: "1", inline: true },
       { name: "9레벨", value: "1", inline: true },
       { name: "10레벨", value: "1", inline: true },
+      { name: "\u200B", value: "\u200B" },
       { name: `명돌`, value: `1`, inline: true },
       { name: `위명돌`, value: `1`, inline: true },
       { name: "경명돌", value: `1`, inline: true },
@@ -64,9 +55,10 @@ module.exports = {
       })
       .setColor("#0099ff")
       .setTitle(title)
+      .setDescription(description)
       .addFields(fields)
       .setThumbnail("https://i.imgur.com/cE7xFGE.png")
-      .setFooter("\u3000".repeat(10/*any big number works too*/)+"|")
+      .setFooter("\u3000".repeat(10)+"|")
       .setTimestamp();
 
     channel.send({ content: "보스러쉬 계산기 입니다.", embeds: [embed] });
