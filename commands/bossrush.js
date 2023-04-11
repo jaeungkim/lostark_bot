@@ -5,26 +5,26 @@ module.exports = {
     description: "보스러쉬 보석 갯수 calculator",
     options: [
       {
-        name: "회랑 노말",
+        name: "normal",
         type: 3,
         description: "회랑 노말 티켓 갯수"
       },
       {
-        name: "회랑 하드",
+        name: "hard",
         type: 3,
         description: "회랑 하드 티켓 갯수"
       },
       {
-        name: "회랑 헬",
+        name: "hell",
         type: 3,
         description: "회랑 헬 티켓 갯수"
       },
     ],
     execute(interaction, client) {
       const channel = client.channels.cache.get(interaction.channelId);
-      const normalTicket = interaction.options.get("회랑 노말").value;
-      const hardTicket = interaction.options.get("회랑 하드").value;
-      const hellTicket = interaction.options.get("회랑 헬").value;
+      const normalTicket = interaction.options.get("normal").value;
+      const hardTicket = interaction.options.get("hard").value;
+      const hellTicket = interaction.options.get("hell").value;
   
       const title = `보스러쉬 티켓:`;
       const description = `보스러쉬`;
