@@ -113,6 +113,7 @@ module.exports = {
     const solargraceEmoji = `<:solargrace:1108154753764040714>`;
     const solarblessingEmoji = `<:solarblessing:1108154751775936533>`;
     const solarprotectionEmoji = `<:solarprotection:1108154756339335319>`;
+    const silverEmoji = `<:silver:1108156375839821915>`;
 
     const amountFirstTickets = Number(
       interaction.options.get("first_forbiddance")?.value ?? 0
@@ -138,10 +139,9 @@ module.exports = {
       amountFifthTickets
     );
 
-    const title = `티켓 갯수: 1금제: ${amountFirstTickets} |  2금제: ${amountSecondTickets} | 3금제: ${amountThirdTickets} | 4금제: ${amountFourthTickets} | 5금제: ${amountFifthTickets}`;
-    const description = `큐브 계산기 입니다.`;
+    const title = `티켓 갯수: 1금제: ${amountFirstTickets}장 |  2금제: ${amountSecondTickets}장 | 3금제: ${amountThirdTickets}장 | 4금제: ${amountFourthTickets}장 | 5금제: ${amountFifthTickets}장`;
+    // const description = `큐브 계산기 입니다.`;
     const fields = [
-      { name: "\u200B", value: "\u200B" },
       { name: "2레벨", value: `${rewards.level2}`, inline: true },
       { name: "3레벨", value: `${rewards.level3}`, inline: true },
       { name: "4레벨", value: `${rewards.level4}`, inline: true },
@@ -152,7 +152,11 @@ module.exports = {
       { name: "9레벨", value: `${rewards.level9}`, inline: true },
       { name: "10레벨", value: `${rewards.level10}`, inline: true },
       { name: "\u200B", value: "\u200B" },
-      { name: `${greathonorEmoji} 위명돌`, value: `${rewards.greatHonorLeapStone}`, inline: true },
+      {
+        name: `${greathonorEmoji} 위명돌`,
+        value: `${rewards.greatHonorLeapStone}`,
+        inline: true,
+      },
       {
         name: `${marvelEmoji} 경명돌`,
         value: `${rewards.marvelousHonorLeapStone}`,
@@ -181,13 +185,11 @@ module.exports = {
       },
       { name: "\u200B", value: "\u200B" },
       {
-        name: "실링",
+        name: `${silverEmoji} 실링`,
         value: `${rewards.silver}`,
         inline: true,
       },
-      { name: "\u200B", value: "\u200B" },
       { name: "카드경험치", value: `${rewards.cardExp}`, inline: true },
-      { name: "\u200B", value: "\u200B" },
     ];
 
     const embed = new EmbedBuilder()
