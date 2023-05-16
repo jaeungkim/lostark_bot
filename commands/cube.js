@@ -138,8 +138,30 @@ module.exports = {
       amountFourthTickets,
       amountFifthTickets
     );
+    let titleParts = [];
 
-    const title = `티켓 갯수: 1금제: ${amountFirstTickets}장 |  2금제: ${amountSecondTickets}장 | 3금제: ${amountThirdTickets}장 | 4금제: ${amountFourthTickets}장 | 5금제: ${amountFifthTickets}장`;
+    if (amountFirstTickets > 0) {
+      titleParts.push(`1금제: ${amountFirstTickets}장`);
+    }
+
+    if (amountSecondTickets > 0) {
+      titleParts.push(`2금제: ${amountSecondTickets}장`);
+    }
+
+    if (amountThirdTickets > 0) {
+      titleParts.push(`3금제: ${amountThirdTickets}장`);
+    }
+
+    if (amountFourthTickets > 0) {
+      titleParts.push(`4금제: ${amountFourthTickets}장`);
+    }
+
+    if (amountFifthTickets > 0) {
+      titleParts.push(`5금제: ${amountFifthTickets}장`);
+    }
+
+    const title = `티켓 갯수: ` + titleParts.join(' | ');
+    // const title = `티켓 갯수: 1금제: ${amountFirstTickets}장 |  2금제: ${amountSecondTickets}장 | 3금제: ${amountThirdTickets}장 | 4금제: ${amountFourthTickets}장 | 5금제: ${amountFifthTickets}장`;
     // const description = `큐브 계산기 입니다.`;
     const fields = [
       { name: "2레벨", value: `${rewards.level2}`, inline: true },
@@ -199,7 +221,7 @@ module.exports = {
       })
       .setColor("#0099ff")
       .setTitle(title)
-      .setDescription(description)
+      // .setDescription(description)
       .addFields(fields)
       .setThumbnail("https://i.imgur.com/cE7xFGE.png")
       .setTimestamp();
