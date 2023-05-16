@@ -110,6 +110,9 @@ module.exports = {
     const marvelEmoji = "<:marvel:1108153783369871421>";
     const greathonorEmoji = "<:greathonor:1108153782015107122>";
     const changmyungEmoji = "<:chanmyung:1108153779267846286>";
+    const solargraceEmoji = `<:solargrace:1108154753764040714>`;
+    const solarblessingEmoji = `<:solarblessing:1108154751775936533>`;
+    const solarprotectionEmoji = `<:solarprotection:1108154756339335319>`;
 
     const amountFirstTickets = Number(
       interaction.options.get("first_forbiddance")?.value ?? 0
@@ -162,17 +165,17 @@ module.exports = {
       },
       {
         name: "은총",
-        value: `${rewards.solarGrace}`,
+        value: `${rewards.solarGrace}${solargraceEmoji}`,
         inline: true,
       },
       {
         name: "축복",
-        value: `${rewards.solarBlessing}`,
+        value: `${rewards.solarBlessing}${solarblessingEmoji}`,
         inline: true,
       },
       {
         name: "가호",
-        value: `${rewards.solarProtection}`,
+        value: `${rewards.solarProtection}${solarprotectionEmoji}`,
         inline: true,
       },
       {
