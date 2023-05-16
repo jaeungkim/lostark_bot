@@ -176,43 +176,47 @@ module.exports = {
       { name: "10레벨", value: `${rewards.level10}`, inline: true },
       { name: "\u200B", value: "\u200B" },
       {
-        name: `${greathonorEmoji} 위명돌`,
+        name: `위명돌 ${greathonorEmoji} `,
         value: `${rewards.greatHonorLeapStone}`,
         inline: true,
       },
       {
-        name: `${marvelEmoji} 경명돌`,
+        name: `경명돌 ${marvelEmoji} `,
         value: `${rewards.marvelousHonorLeapStone}`,
         inline: true,
       },
       {
-        name: `${changmyungEmoji} 찬명돌`,
+        name: `찬명돌 ${changmyungEmoji} `,
         value: `${rewards.chanmyungdol}`,
         inline: true,
       },
       { name: "\u200B", value: "\u200B" },
       {
-        name: `${solargraceEmoji} 은총`,
+        name: `은총 ${solargraceEmoji}`,
         value: `${rewards.solarGrace}`,
         inline: true,
       },
       {
-        name: `${solarblessingEmoji} 축복`,
+        name: `축복 ${solarblessingEmoji}`,
         value: `${rewards.solarBlessing}`,
         inline: true,
       },
       {
-        name: `${solarprotectionEmoji} 가호`,
+        name: `가호 ${solarprotectionEmoji}`,
         value: `${rewards.solarProtection}`,
         inline: true,
       },
       { name: "\u200B", value: "\u200B" },
       {
-        name: `${silverEmoji} 실링`,
-        value: `${rewards.silver}`,
+        name: `실링 ${silverEmoji}`,
+        value: `${rewards.silver.toLocaleString()}`,
         inline: true,
       },
-      { name: "카드경험치", value: `${rewards.cardExp}`, inline: true },
+      {
+        name: "카드경험치",
+        value: `${rewards.cardExp.toLocaleString()}`,
+        inline: true,
+      },
     ];
 
     const embed = new EmbedBuilder()
