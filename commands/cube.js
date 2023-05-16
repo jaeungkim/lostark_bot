@@ -160,7 +160,7 @@ module.exports = {
       titleParts.push(`5금제: ${amountFifthTickets}장`);
     }
 
-    const title = `티켓 갯수:\n` + titleParts.join(" | ");
+    const title = `티켓 갯수: ` + titleParts.join(" | ");
     // const title = `티켓 갯수: 1금제: ${amountFirstTickets}장 |  2금제: ${amountSecondTickets}장 | 3금제: ${amountThirdTickets}장 | 4금제: ${amountFourthTickets}장 | 5금제: ${amountFifthTickets}장`;
     // const description = `큐브 계산기 입니다.`;
     const fields = [
@@ -177,33 +177,33 @@ module.exports = {
       { name: "\u200B", value: "\u200B" },
       {
         name: `위명돌`,
-        value: `${greathonorEmoji} ${rewards.greatHonorLeapStone}`,
+        value: `${greathonorEmoji} ${rewards.greatHonorLeapStone}개`,
         inline: true,
       },
       {
         name: `경명돌`,
-        value: `${marvelEmoji} ${rewards.marvelousHonorLeapStone}`,
+        value: `${marvelEmoji} ${rewards.marvelousHonorLeapStone}개`,
         inline: true,
       },
       {
         name: `찬명돌`,
-        value: `${changmyungEmoji} ${rewards.chanmyungdol}`,
+        value: `${changmyungEmoji} ${rewards.chanmyungdol}개`,
         inline: true,
       },
       { name: "\u200B", value: "\u200B" },
       {
         name: `은총`,
-        value: `${solargraceEmoji} ${rewards.solarGrace}`,
+        value: `${solargraceEmoji} ${rewards.solarGrace}개`,
         inline: true,
       },
       {
         name: `축복`,
-        value: `${solarblessingEmoji} ${rewards.solarBlessing}`,
+        value: `${solarblessingEmoji} ${rewards.solarBlessing}개`,
         inline: true,
       },
       {
         name: `가호`,
-        value: `${solarprotectionEmoji} ${rewards.solarProtection}`,
+        value: `${solarprotectionEmoji} ${rewards.solarProtection}개`,
         inline: true,
       },
       { name: "\u200B", value: "\u200B" },
