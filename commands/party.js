@@ -1,14 +1,13 @@
 const { EmbedBuilder } = require("discord.js");
 
 function updateEmbed(msg, embed, description, partyMember, limit) {
-  let partyMemberString = "";
-  if (partyMember.size > 0) {
-    partyMemberString += "\n\n파티멤버:";
-  }
-  let i = 1;
-  for (let [userId, role] of partyMember) {
-    partyMemberString += `\n ${i++}. <@${userId}> - ${role}`;
-  }
+  const partyMemberString =
+    partyMember.size > 0
+      ? "\n\n파티멤버:" +
+        [...partyMember.entries()]
+          .map(([userId, role], i) => `\n ${i + 1}. <@${userId}> - ${role}`)
+          .join("")
+      : "";
   embed
     .setDescription(description + partyMemberString)
     .setTitle(`모집인원 : ${partyMember.size}/${limit}`)
@@ -17,14 +16,13 @@ function updateEmbed(msg, embed, description, partyMember, limit) {
 }
 
 function endEmbed(msg, embed, description, partyMember) {
-  let partyMemberString = "";
-  if (partyMember.size > 0) {
-    partyMemberString += "\n\n파티멤버:";
-  }
-  let i = 1;
-  for (let [userId, role] of partyMember) {
-    partyMemberString += `\n ${i++}. <@${userId}> - ${role}`;
-  }
+  const partyMemberString =
+    partyMember.size > 0
+      ? "\n\n파티멤버:" +
+        [...partyMember.entries()]
+          .map(([userId, role], i) => `\n ${i + 1}. <@${userId}> - ${role}`)
+          .join("")
+      : "";
   embed
     .setDescription(description + partyMemberString)
     .setTitle("마감되었습니다")
