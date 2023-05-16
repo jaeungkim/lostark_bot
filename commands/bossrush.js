@@ -105,6 +105,12 @@ module.exports = {
 
   execute(interaction, client) {
     const channel = client.channels.cache.get(interaction.channelId);
+
+    //EMOTES
+    const marvelEmoji = "<:marvel:1108153783369871421>";
+    const greathonorEmoji = "<:greathonor:1108153782015107122>";
+    const changmyungEmoji = "<:chanmyung:1108153779267846286>";
+
     const amountFirstTickets = Number(
       interaction.options.get("first_forbiddance")?.value ?? 0
     );
@@ -143,15 +149,15 @@ module.exports = {
       { name: "9레벨", value: `${rewards.level9}`, inline: true },
       { name: "10레벨", value: `${rewards.level10}`, inline: true },
       { name: "\u200B", value: "\u200B" },
-      { name: `위명돌`, value: `${rewards.greatHonorLeapStone}`, inline: true },
+      { name: `위명돌`, value: `${rewards.greatHonorLeapStone}${greathonorEmoji}`, inline: true },
       {
         name: "경명돌",
-        value: `${rewards.marvelousHonorLeapStone}`,
+        value: `${rewards.marvelousHonorLeapStone}${marvelEmoji}`,
         inline: true,
       },
       {
         name: "찬명돌",
-        value: `${rewards.chanmyungdol}`,
+        value: `${rewards.chanmyungdol}${changmyungEmoji}`,
         inline: true,
       },
       {
