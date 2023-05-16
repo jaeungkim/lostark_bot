@@ -160,10 +160,11 @@ module.exports = {
       titleParts.push(`5금제: ${amountFifthTickets}장`);
     }
 
-    const title = `티켓 갯수: ` + titleParts.join(' | ');
+    const title = `티켓 갯수: ` + titleParts.join(" | ");
     // const title = `티켓 갯수: 1금제: ${amountFirstTickets}장 |  2금제: ${amountSecondTickets}장 | 3금제: ${amountThirdTickets}장 | 4금제: ${amountFourthTickets}장 | 5금제: ${amountFifthTickets}장`;
     // const description = `큐브 계산기 입니다.`;
     const fields = [
+      { name: "\u200B", value: "\u200B" },
       { name: "2레벨", value: `${rewards.level2}`, inline: true },
       { name: "3레벨", value: `${rewards.level3}`, inline: true },
       { name: "4레벨", value: `${rewards.level4}`, inline: true },
