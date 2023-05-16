@@ -1,20 +1,55 @@
 const { EmbedBuilder } = require("discord.js");
 
-function calculateRewards(normal, hard, hell) {
+function calculateRewards(
+  first_forbiddance,
+  second_forbiddance,
+  third_forbiddance,
+  fourth_forbiddance,
+  fifth_forbiddance
+) {
   let rewards = {
-    level2: 2 * hell,
-    level3: normal + hard + 2 * hell,
-    level4: 2 * (normal + hard + hell),
-    level5: 0,
+    level2: first_forbiddance,
+    level3: 2 * first_forbiddance + second_forbiddance + 2 * fourth_forbiddance,
+    level4: second_forbiddance + 2 * third_forbiddance + 2 * fourth_forbiddance,
+    level5: fifth_forbiddance,
     level6: 0,
     level7: 0,
     level8: 0,
     level9: 0,
     level10: 0,
-    honorLeapStone: 17 * normal,
-    greatHonorLeapStone: 18 * normal,
-    marvelousHonorLeapStone: 15 * hard + 26 * hell,
-    cardExp: 8500 * (hard + hell),
+    greatHonorLeapStone: 20 * first_forbiddance,
+    marvelousHonorLeapStone: 14 * second_forbiddance + 25 * third_forbiddance,
+    chanmyungdol: 14 * fourth_forbiddance + 25 * fifth_forbiddance,
+    solarGrace:
+      6 * first_forbiddance +
+      8 * second_forbiddance +
+      11 * third_forbiddance +
+      12 * fourth_forbiddance +
+      13 * fifth_forbiddance,
+    solarBlessing:
+      3 * first_forbiddance +
+      4 * second_forbiddance +
+      6 * third_forbiddance +
+      7 * fourth_forbiddance +
+      8 * fifth_forbiddance,
+    solarProtection:
+      1 * first_forbiddance +
+      2 * second_forbiddance +
+      2 * third_forbiddance +
+      3 * fourth_forbiddance +
+      4 * fifth_forbiddance,
+    silver:
+      80000 * first_forbiddance +
+      100000 * second_forbiddance +
+      110000 * third_forbiddance +
+      120000 * fourth_forbiddance +
+      130000 * fifth_forbiddance,
+    cardExp:
+      3000 * first_forbiddance +
+      9000 * second_forbiddance +
+      12000 * third_forbiddance +
+      13000 * fourth_forbiddance +
+      13500 * fifth_forbiddance,
   };
 
   mergeGems(rewards, 2);
@@ -39,45 +74,63 @@ function mergeGems(rewards, level) {
 
 module.exports = {
   name: "bossrush",
-  description: "보스러쉬 calculator",
+  description: "큐브 calculator",
   options: [
     {
-      name: "normal",
+      name: "first_forbiddance",
       type: 3,
-      description: "회랑 하드 티켓 갯수",
+      description: "1금제(1302) 티켓 갯수",
     },
     {
-      name: "hard",
+      name: "second_forbiddance",
       type: 3,
-      description: "회랑 하드 티켓 갯수",
+      description: "2금제(1490) 티켓 갯수",
     },
     {
-      name: "hell",
+      name: "third_forbiddance",
       type: 3,
-      description: "회랑 헬 티켓 갯수",
+      description: "3금제(1540) 티켓 갯수",
+    },
+    {
+      name: "fourth_forbiddance",
+      type: 3,
+      description: "4금제(1580) 티켓 갯수",
+    },
+    {
+      name: "fifth_forbiddance",
+      type: 3,
+      description: "5금제(1610) 티켓 갯수",
     },
   ],
 
   execute(interaction, client) {
     const channel = client.channels.cache.get(interaction.channelId);
-    const amountOfNormalTickets = Number(
-      interaction.options.get("normal")?.value ?? 0
+    const amountFirstTickets = Number(
+      interaction.options.get("first_forbiddance")?.value ?? 0
     );
-    const amountofHardTickets = Number(
-      interaction.options.get("hard")?.value ?? 0
+    const amountSecondTickets = Number(
+      interaction.options.get("second_forbiddance")?.value ?? 0
     );
-    const amountofHellTickets = Number(
-      interaction.options.get("hell")?.value ?? 0
+    const amountThirdTickets = Number(
+      interaction.options.get("third_forbiddance")?.value ?? 0
+    );
+    const amountFourthTickets = Number(
+      interaction.options.get("fourth_forbiddance")?.value ?? 0
+    );
+    const amountFifthTickets = Number(
+      interaction.options.get("fifth_forbiddance")?.value ?? 0
     );
 
     const rewards = calculateRewards(
-      amountOfNormalTickets,
-      amountofHardTickets,
-      amountofHellTickets
+      amountFirstTickets,
+      amountSecondTickets,
+      amountThirdTickets,
+      amountFourthTickets,
+      amountFifthTickets
     );
 
-    const title = `티켓 갯수: 노말: ${amountOfNormalTickets} |  하드: ${amountofHardTickets} | 헬: ${amountofHellTickets}`;
-    const description = `보스러쉬 계산기 입니다.`;
+    const title = `티켓 갯수: 1금제: ${amountFirstTickets} |  2금제: ${amountSecondTickets} | 3금제: ${amountThirdTickets} | 4금제: ${amountFourthTickets} | 5금제: ${amountFifthTickets}`;
+    const description = `큐브 계산기 입니다.`;
     const fields = [
       { name: "\u200B", value: "\u200B" },
       { name: "2레벨", value: `${rewards.level2}`, inline: true },
@@ -90,11 +143,35 @@ module.exports = {
       { name: "9레벨", value: `${rewards.level9}`, inline: true },
       { name: "10레벨", value: `${rewards.level10}`, inline: true },
       { name: "\u200B", value: "\u200B" },
-      { name: `명돌`, value: `${rewards.honorLeapStone}`, inline: true },
       { name: `위명돌`, value: `${rewards.greatHonorLeapStone}`, inline: true },
       {
         name: "경명돌",
         value: `${rewards.marvelousHonorLeapStone}`,
+        inline: true,
+      },
+      {
+        name: "찬명돌",
+        value: `${rewards.chanmyungdol}`,
+        inline: true,
+      },
+      {
+        name: "은총",
+        value: `${rewards.solarGrace}`,
+        inline: true,
+      },
+      {
+        name: "축복",
+        value: `${rewards.solarBlessing}`,
+        inline: true,
+      },
+      {
+        name: "가호",
+        value: `${rewards.solarProtection}`,
+        inline: true,
+      },
+      {
+        name: "실링",
+        value: `${rewards.silver}`,
         inline: true,
       },
       { name: "\u200B", value: "\u200B" },
@@ -114,6 +191,6 @@ module.exports = {
       .setThumbnail("https://i.imgur.com/cE7xFGE.png")
       .setTimestamp();
 
-    channel.send({ content: "보스러쉬 계산기 입니다.", embeds: [embed] });
+    channel.send({ content: "큐브 계산기 입니다.", embeds: [embed] });
   },
 };
