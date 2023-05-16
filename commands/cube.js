@@ -73,7 +73,7 @@ function mergeGems(rewards, level) {
 }
 
 module.exports = {
-  name: "bossrush",
+  name: "cube",
   description: "큐브 calculator",
   options: [
     {
