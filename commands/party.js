@@ -18,9 +18,9 @@ const { EmbedBuilder } = require("discord.js");
 function updateEmbed(msg, embed, description, partyMember, limit) {
   const partyMemberString =
     partyMember.size > 0
-      ? "\n\n파티멤버:" +
+      ? "\n\n파티멤버:\n" +
         [...partyMember.entries()]
-          .map(([userId, role], i) => ` ${i + 1}. <@${userId}> - ${role}`)
+          .map(([userId, role], i) => `${i + 1}. <@${userId}> - ${role}`)
           .join("\n")
       : "";
   embed
