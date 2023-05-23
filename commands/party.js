@@ -1,12 +1,27 @@
 const { EmbedBuilder } = require("discord.js");
 
+// function updateEmbed(msg, embed, description, partyMember, limit) {
+//   const partyMemberString =
+//     partyMember.size > 0
+//       ? "\n\n파티멤버:" +
+//         [...partyMember.entries()]
+//           .map(([userId, role], i) => `\n ${i + 1}. <@${userId}> - ${role}`)
+//           .join("")
+//       : "";
+//   embed
+//     .setDescription(description + partyMemberString)
+//     .setTitle(`모집인원 : ${partyMember.size}/${limit}`)
+//     .setColor("#3498DB");
+//   msg.edit({ embeds: [embed] });
+// }
+
 function updateEmbed(msg, embed, description, partyMember, limit) {
   const partyMemberString =
     partyMember.size > 0
       ? "\n\n파티멤버:" +
         [...partyMember.entries()]
-          .map(([userId, role], i) => `\n ${i + 1}. <@${userId}> - ${role}`)
-          .join("")
+          .map(([userId, role], i) => ` ${i + 1}. <@${userId}> - ${role}`)
+          .join("\n")
       : "";
   embed
     .setDescription(description + partyMemberString)
