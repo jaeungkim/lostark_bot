@@ -35,8 +35,8 @@ function endEmbed(msg, embed, description, partyMember) {
     partyMember.size > 0
       ? "\n\n파티멤버:\n" +
         [...partyMember.entries()]
-          .map(([userId, role], i) => `\n${i + 1}. <@${userId}> - ${role}`)
-          .join("")
+          .map(([userId, role], i) => `${i + 1}. <@${userId}> - ${role}`)
+          .join("\n")
       : "";
   embed
     .setDescription(description + partyMemberString)
