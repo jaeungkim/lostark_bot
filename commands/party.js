@@ -33,9 +33,9 @@ function updateEmbed(msg, embed, description, partyMember, limit) {
 function endEmbed(msg, embed, description, partyMember) {
   const partyMemberString =
     partyMember.size > 0
-      ? "\n\n파티멤버:" +
+      ? "\n\n파티멤버:\n" +
         [...partyMember.entries()]
-          .map(([userId, role], i) => `\n ${i + 1}. <@${userId}> - ${role}`)
+          .map(([userId, role], i) => `${i + 1}. <@${userId}> - ${role}`)
           .join("")
       : "";
   embed
