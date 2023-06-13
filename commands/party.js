@@ -1,20 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
 
-// function updateEmbed(msg, embed, description, partyMember, limit) {
-//   const partyMemberString =
-//     partyMember.size > 0
-//       ? "\n\n파티멤버:" +
-//         [...partyMember.entries()]
-//           .map(([userId, role], i) => `\n ${i + 1}. <@${userId}> - ${role}`)
-//           .join("")
-//       : "";
-//   embed
-//     .setDescription(description + partyMemberString)
-//     .setTitle(`모집인원 : ${partyMember.size}/${limit}`)
-//     .setColor("#3498DB");
-//   msg.edit({ embeds: [embed] });
-// }
-
 function updateEmbed(msg, embed, description, partyMember, limit) {
   const partyMemberString =
     partyMember.size > 0
@@ -115,6 +100,14 @@ module.exports = {
           name: "아브-하드16",
           value: "1095112648984625283",
         },
+        {
+          name: "카양겔 노말",
+          value: "1108168978582483036",
+        },
+        {
+          name: "카양겔 하드",
+          value: "1108169005946109992",
+        },
       ],
     },
     {
@@ -183,6 +176,8 @@ module.exports = {
       "1095112450594050228": 8, //하브12
       "1095112419572994058": 8, //하브14
       "1095112648984625283": 8, //하브16
+      "1108168978582483036": 4, //카양겔 노말
+      "1108169005946109992": 4, //카양겔 하드
     };
     const abyssThumbnailObject = {
       "1069159798463008799": "https://i.imgur.com/hILUSzt.png", //데칼
@@ -200,6 +195,8 @@ module.exports = {
       "1095112450594050228": "https://i.imgur.com/ApXMhy6.png", //하브12
       "1095112419572994058": "https://i.imgur.com/BLZWYRE.jpg", //하브14
       "1095112648984625283": "https://i.imgur.com/REQuQtH.jpg", //하브16
+      "1108168978582483036": "https://i.imgur.com/xAsrhSZ.jpg", //카양겔 노말
+      "1108169005946109992": "https://i.imgur.com/dkeRKTO.jpg", //카양겔 하드
     };
     let limit = lineUp[partyName];
     let abyssThumbnailPics = abyssThumbnailObject[partyName];
